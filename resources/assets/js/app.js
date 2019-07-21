@@ -4,14 +4,20 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap')
+require("./bootstrap");
 
-window.Vue = require('vue')
+window.Vue = require("vue");
 
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import Vue from "vue";
+import Vuetify from "vuetify";
+import VueRouter from "vue-router";
+import VeeValidate from "vee-validate";
+import routes from "./router.js";
+import vueHeadful from "vue-headful";
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
+Vue.use(VueRouter);
+Vue.use(VeeValidate, { inject: false });
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -19,8 +25,20 @@ Vue.use(Vuetify)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'))
+Vue.component("home", require("./components/Dashboard.vue"));
+Vue.component("vue-headful", vueHeadful);
+
+const router = new VueRouter({
+  mode: "history",
+  routes // short for `routes: routes`
+});
+
+// router.beforeEach((to, from, next) => {
+//   document.title = to.meta.title;
+//   next();
+// });
 
 const app = new Vue({
-  el: '#app',
-})
+  el: "#app",
+  router
+});

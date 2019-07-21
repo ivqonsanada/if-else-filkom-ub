@@ -15,13 +15,20 @@
 //     return view('index');
 // });
 
-Route::get('/', 'PageController@index');
+// Route::get('/', 'PageController@index');
 
-Route::get('/faq', 'PageController@faq');
-Route::get('/documentation', 'PageController@documentation');
-Route::get('/rules', 'PageController@rules');
+// Route::get('/faq', 'PageController@faq');
+// Route::get('/documentation', 'PageController@documentation');
+// Route::get('/rules', 'PageController@rules');
 
-Route::get('/login', 'PageController@login');
-Route::get('/home', 'PageController@home');
-Route::get('/nilai', 'PageController@nilai');
-Route::get('/tugas', 'PageController@tugas');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::get('{any?}', 'PageController@index')->where('any', '.*');
+// Route::post('/home2', 'PageController@home2');
+// Route::get('/nilai', 'PageController@nilai');
+// Route::get('/tugas', 'PageController@tugas');
+
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
