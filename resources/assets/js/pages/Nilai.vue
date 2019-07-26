@@ -39,7 +39,7 @@ export default {
       x: "right",
       mode: "multi-line",
       timeout: 6000,
-      text: "IF-ELSE Coming Soon!",
+      text: "IF ELSE Coming Soon!",
       headers: [
         {
           text: "Kategori",

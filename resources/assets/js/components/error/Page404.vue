@@ -2,13 +2,13 @@
   <v-layout>
     <v-content>
       <v-container fluid fill-height>
-        <v-flex align-center justify-center layout text-xs-center column>
+        <v-flex align-center justify-center layout text-center column>
           <v-card>
             <v-avatar :tile="true" :size="logoSize">
               <img src="https://static.ivqonsanada.com/if-else/img/logo.svg" />
             </v-avatar>
 
-            <v-flex align-center justify-center layout text-xs-center column>
+            <v-flex align-center justify-center layout text-center column>
               <v-card-title primary-title>
                 <div>
                   <h3 class="headline mb-0">404 - Page Not Found!</h3>

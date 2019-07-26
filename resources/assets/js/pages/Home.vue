@@ -1,16 +1,25 @@
 
 <template>
   <v-content>
-    <vue-headful title="Home | IF-ELSE"></vue-headful>
+    <vue-headful title="Home | IF ELSE"></vue-headful>
     <div class="parallax">
       <v-container fluid fill-height>
-        <v-flex align-center justify-center layout text-xs-center column class="white--text">
-          <v-avatar :tile="true" :size="logoSize" class="mb-4">
-            <img src="https://static.ivqonsanada.com/if-else/img/logo-noname.svg" />
-          </v-avatar>
+        <v-flex align-center justify-space-between layout text-center column class="white--text">
+          <div></div>
 
-          <h1 class="display-3 mt-4 mb-1">Cooming Soon</h1>
-          <h2 class="display-2 mb-4">Rangkaian 1</h2>
+          <div>
+            <v-avatar :tile="true" :size="logoSize" class="mb-4">
+              <img src="https://static.ivqonsanada.com/if-else/img/logo-noname.svg" />
+            </v-avatar>
+
+            <h1
+              class="mt-3 mb-1"
+              :class="{'display-2': $vuetify.breakpoint. smAndDown, 'display-3': $vuetify.breakpoint. mdAndUp}"
+            >Cooming Soon</h1>
+            <h2
+              :class="{'display-1': $vuetify.breakpoint. smAndDown, 'display-2': $vuetify.breakpoint. mdAndUp}"
+            >Rangkaian 1</h2>
+          </div>
 
           <v-btn
             ref="button"
@@ -18,7 +27,8 @@
             fab
             large
             dark
-            class="my-5 elevation-24"
+            class="elevation-24"
+            id="my-5"
             @click="$vuetify.goTo(target, options)"
           >
             <v-icon>keyboard_arrow_down</v-icon>
@@ -27,72 +37,64 @@
       </v-container>
     </div>
 
-    <v-container fluid>
-      <v-flex align-center justify-center text-xs-center class="display-2 my-4">Apa itu IF-ELSE?</v-flex>
-      <v-flex align-center justify-center layout text-xs-center class="white--text" wrap>
-        <v-card>
-          <v-avatar :tile="true" :size="logoHMIFSize" class="pa-3 ma-3">
-            <img src="https://static.ivqonsanada.com/if-else/img/logo-hmif.png" />
-          </v-avatar>
-        </v-card>
-        <v-card>
-          <v-avatar :tile="true" :size="logoHMIFSize" class="pa-3 ma-3">
-            <div class="blockquote pa-3">{{ card_text }}</div>
-          </v-avatar>
-        </v-card>
-      </v-flex>
-    </v-container>
+    <div class="blue-grey darken-3" id="ifelse">
+      <v-container fluid>
+        <v-layout justify-center>
+          <v-flex
+            align-center
+            justify-center
+            layout
+            text-center
+            column
+            class="white--text"
+            md6
+            sm12
+          >
+            <h1 class="display-2 mt-4 mb-1">IF ELSE</h1>
+            <h2 class="display-1 mb-4">"Berdiri Bersama Informatika"</h2>
+            <h3
+              class="headline pb-4"
+            >IF ELSE merupakan singkatan dari Informatics Education and Learning for Society Enhancement yang merupakan sebuah Program Pembinaan Mahasiswa Baru (Probin Maba) Teknik Informatika pada tahun 2019.</h3>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </div>
 
-    <v-container fluid>
-      <v-flex align-center justify-center text-xs-center class="display-2 pt-4" id="news">NEWS</v-flex>
+    <v-container fluid class="mb-3">
+      <v-flex text-center class="display-2 pt-4" id="news">News</v-flex>
       <v-layout justify-center>
-        <v-flex xs12 sm6>
+        <v-flex wrap>
           <v-container fluid grid-list-md>
-            <v-layout column>
-              <v-flex v-for="card in cards" :key="card.title" v-bind="{ [`xs6`]: true }">
+            <v-layout wrap>
+              <v-flex v-for="post in news.data" :key="post.title" md3 sm6 xs12>
                 <v-hover>
-                  <v-card
-                    slot-scope="{ hover }"
-                    class="mx-auto my-3"
-                    color="grey lighten-4"
-                    :href="card.link"
-                  >
-                    <v-img :aspect-ratio="16/9" :src="card.src">
-                      <v-expand-transition>
-                        <div
-                          v-if="hover"
-                          class="d-flex transition-fast-in-fast-out light-blue darken-4 v-card--reveal display-1 white--text"
-                          style="height: 100%;"
-                        >Read more</div>
-                      </v-expand-transition>
-                    </v-img>
-                    <v-card-text class="pt-4" style="position: relative;">
-                      <div class="font-weight-light grey--text title mb-2">21 Juli 2019</div>
-                      <h3 class="display-1 font-weight-light mb-2">Launching IF-ELSE 2019</h3>
-                    </v-card-text>
-                  </v-card>
+                  <template v-slot:default="{ hover }">
+                    <v-card class="mx-1 my-3 lekung" color="grey lighten-4" :to="post.link">
+                      <v-img
+                        :aspect-ratio="16/9"
+                        :src="`http://ifelse.filkom.ub.ac.id/public/img/blog/${post.img}`"
+                      ></v-img>
+                      <v-card-text class="pt-4" style="position: relative;">
+                        <div class="font-weight-light grey--text subheading mb-2">{{ post.tgl }}</div>
+                        <h3 class="title font-weight-light mb-2">{{ post.title }}</h3>
+                      </v-card-text>
+
+                      <v-fade-transition>
+                        <v-overlay v-if="hover" absolute color="light-blue darken-4">
+                          <v-btn>See more info</v-btn>
+                        </v-overlay>
+                      </v-fade-transition>
+                    </v-card>
+                  </template>
                 </v-hover>
               </v-flex>
             </v-layout>
           </v-container>
+          <div class="text-center">
+            <v-pagination v-model="page" :length="news.last_page" @input="watchCurrentPage"></v-pagination>
+          </div>
         </v-flex>
       </v-layout>
-    </v-container>
-
-    <v-container fluid class="mb-3">
-      <v-flex align-center justify-center text-xs-center class="display-2 my-4">Bagian dari</v-flex>
-      <v-flex align-center justify-center layout text-xs-center class="white--text" wrap>
-        <v-card>
-          <v-avatar :tile="true" :size="logoHMIFSize" class="pa-3 ma-3">
-            <img src="https://static.ivqonsanada.com/if-else/img/logo-hmif.png" />
-          </v-avatar>
-        </v-card>
-        <v-card>
-          <v-avatar :tile="true" :size="logoHMIFSize" class="pa-3 ma-3">
-            <div class="blockquote pa-3">{{ card_text }}</div>
-          </v-avatar>
-        </v-card>
-      </v-flex>
     </v-container>
   </v-content>
 </template>
@@ -103,27 +105,26 @@ export default {
   data() {
     return {
       logoSize: "120px",
-      logoHMIFSize: "280px",
-      snackbar: true,
-      card_text:
-        "Himpunan Mahasiswa Informatika Fakultas Ilmu Komputer Universitas Brawijaya (HMIF FILKOM UB) adalah organisasi yang mewadahi, menaungi dan beranggotakan seluruh mahasiswa Informatika FILKOM UB.",
-      y: "top",
-      x: "right",
-      mode: "multi-line",
-      timeout: 6000,
-      text: "IF-ELSE Coming Soon!",
-      selector: "#news",
-      duration: 300,
+      selector: "#ifelse",
+      duration: 500,
       offset: 0,
       easing: "easeInOutCubic",
-      cards: [
-        {
-          title: "Launching IF-ELSE 2019",
-          src: "https://static.ivqonsanada.com/if-else/img/launch-if-else.png",
-          link: "http://ifelse.filkom.ub.ac.id/news/1"
-        }
-      ]
+      page: 1,
+      news: [],
+      overlay: false
     };
+  },
+  methods: {
+    watchCurrentPage(page) {
+      axios
+        .get(`${this.$appUrl}/nyoba?page=${page}`)
+        .then(response => {
+          this.news = response.data;
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    }
   },
   computed: {
     target() {
@@ -136,6 +137,17 @@ export default {
         easing: this.easing
       };
     }
+  },
+
+  beforeCreate() {
+    axios
+      .get(`${this.$appUrl}/nyoba?page=1`)
+      .then(response => {
+        this.news = response.data;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
   }
 };
 </script>
@@ -143,10 +155,10 @@ export default {
 <style>
 .parallax {
   /* The image used */
-  background-image: url("https://static.ivqonsanada.com/if-else/img/home.jpg");
+  background-image: url("http://ifelse.filkom.ub.ac.id/public/img/bg2.png");
 
   /* Set a specific height */
-  height: 720px;
+  height: 95vh;
 
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
@@ -159,8 +171,19 @@ export default {
   align-items: center;
   bottom: 0;
   justify-content: center;
-  opacity: 0.5;
+  opacity: 0.95;
   position: absolute;
   width: 100%;
+}
+.end {
+  margin-top: auto;
+}
+.lekung {
+  border-radius: 5px;
+}
+
+#my-5 {
+  margin-top: 48px !important;
+  margin-bottom: 48px !important;
 }
 </style>

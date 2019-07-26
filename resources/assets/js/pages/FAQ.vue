@@ -1,20 +1,16 @@
 
 <template>
   <v-content>
-    <vue-headful title="FAQ | IF-ELSE"></vue-headful>
+    <vue-headful title="FAQ | IF ELSE"></vue-headful>
     <v-container fluid fill-height>
       <v-layout justify-center align-center>
         <v-flex xs12 sm8 md6>
-          <v-expansion-panel focusable>
-            <v-expansion-panel-content v-for="faq in faqs" :key="faq.ask">
-              <template v-slot:header>
-                <div>{{ faq.ask }}</div>
-              </template>
-              <v-card>
-                <v-card-text class="grey lighten-3">{{ faq.answer }}</v-card-text>
-              </v-card>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
+          <v-expansion-panels focusable>
+            <v-expansion-panel v-for="faq in faqs" :key="faq.ask">
+              <v-expansion-panel-header>{{ faq.ask }}</v-expansion-panel-header>
+              <v-expansion-panel-content class="mt-3">{{ faq.answer }}</v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
         </v-flex>
       </v-layout>
     </v-container>
@@ -37,9 +33,9 @@ export default {
             "Probin Maba TIF 2019 sendiri adalah serangkaian kegiatan pembinaan yang digunakan sebagai sarana mahasiswa Teknik Informatika angkatan 2019 dalam mengembangkan nilai – nilai positif baik dengan cara pendidikan formal maupun informal yang diperoleh dari mahasiswa angkatan terdahulu & dari lingkungan sekitar."
         },
         {
-          ask: "Tema IF ELSE tahun apa ya?",
+          ask: "Tema IF ELSE tahun ini apa ya?",
           answer:
-            "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti ....... Nanti yak wk"
+            "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti yang berarti bersama sama dalam menghadapi segala masalah yang dihadapi maupun menggapai apa yang diinginkan secara bersama sama. Dengan diangkatnya tema ini juga, mahasiswa Teknik Informatika angkatan 2019 dapat memiliki solidaritas yang tinggi pada masing - masing individu dalam menyelesaikan permasalahan yang ada."
         }
       ]
     };

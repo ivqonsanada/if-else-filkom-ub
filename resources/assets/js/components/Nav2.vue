@@ -6,7 +6,7 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-navigation-drawer fixed v-model="drawer" app temporary>
-      <v-flex align-center justify-center layout text-xs-center>
+      <v-flex align-center justify-center layout text-center>
         <v-list>
           <v-list-tile avatar>
             <v-list-tile-avatar :size="avatarSize" :tile="true">

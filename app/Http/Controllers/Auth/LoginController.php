@@ -51,6 +51,7 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
-        return var_dump($request->nim);
+        // return var_dump($request->nim);
+        return redirect('/');
     }
 }

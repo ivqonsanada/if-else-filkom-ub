@@ -4,8 +4,8 @@
 
 @section('content')
 
-<home>
+<layout>
   <router-view></router-view>
-</home>
+</layout>
 
 @endsection

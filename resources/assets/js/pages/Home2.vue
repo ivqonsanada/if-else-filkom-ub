@@ -5,7 +5,7 @@
 
   <v-content>
     <v-container fluid fill-height>
-      <v-flex align-center justify-center layout text-xs-center>
+      <v-flex align-center justify-center layout text-center>
         <v-avatar :tile="true" :size="logoSize">
           <img src="http://ifelse.filkom.ub.ac.id/public/img/logo.svg" />
         </v-avatar>

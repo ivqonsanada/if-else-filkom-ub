@@ -5,12 +5,8 @@ import Rules from "./pages/Rules.vue";
 import Documentation from "./pages/Documentation.vue";
 import FAQ from "./pages/FAQ.vue";
 import Login from "./pages/Login.vue";
-// import UserEdit from './components/user/UserEdit.vue';
-// import MobilIndex from './components/mobil/MobilIndex.vue';
-// import MobilCreate from './components/mobil/MobilCreate.vue';
-// import MobilEdit from './components/mobil/MobilEdit.vue';
-// import SupplierIndex from './components/supplier/
 import Page404 from "./components/error/Page404.vue";
+import News from "./pages/News.vue";
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -21,49 +17,36 @@ const routes = [
   {
     path: "/",
     component: Home,
-    name: "Home",
-    meta: {
-      title: "Home | IF-ELSE"
-    }
+    name: "Home"
   },
   {
     path: "/rules",
     component: Rules,
-    name: "Rules",
-    meta: {
-      title: "Rules | IF-ELSE"
-    }
+    name: "Rules"
   },
   {
     path: "/documentation",
     component: Documentation,
-    name: "Documentation",
-    meta: {
-      title: "Documentation | IF-ELSE"
-    }
+    name: "Documentation"
   },
   {
     path: "/faq",
     component: FAQ,
-    name: "FAQ",
-    meta: {
-      title: "FAQ | IF-ELSE"
-    }
+    name: "FAQ"
   },
   {
     path: "/login",
     component: Login,
-    name: "Login",
-    meta: {
-      title: "Login | IF-ELSE"
-    }
+    name: "Login"
+  },
+  {
+    path: "/blog/:id",
+    component: News,
+    name: "News"
   },
   {
     path: "/*",
-    component: Page404,
-    meta: {
-      title: "Page404 | IF-ELSE"
-    }
+    component: Page404
   }
 ];
 

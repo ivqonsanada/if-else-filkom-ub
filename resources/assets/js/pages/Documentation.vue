@@ -1,7 +1,7 @@
 
 <template>
   <v-content>
-    <vue-headful title="Documentation | IF-ELSE"></vue-headful>
+    <vue-headful title="Documentation | IF ELSE"></vue-headful>
     <v-container fluid fill-height>
       <v-layout column>
         <!-- <v-flex xs12 sm8 md4 mb-4>
@@ -61,7 +61,7 @@
           </v-hover>
         </v-flex>-->
 
-        <v-flex align-center justify-center layout text-xs-center column>
+        <v-flex align-center justify-center layout text-center column>
           <v-card>
             <v-card-title primary-title>
               <div>

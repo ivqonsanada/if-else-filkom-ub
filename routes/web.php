@@ -24,7 +24,13 @@
 Route::post('login', 'Auth\LoginController@login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
+Route::get('nyoba', 'PostController@index');
+Route::get('nyoba/{id?}', 'PostController@post');
+
+
 Route::get('{any?}', 'PageController@index')->where('any', '.*');
+
+
 // Route::post('/home2', 'PageController@home2');
 // Route::get('/nilai', 'PageController@nilai');
 // Route::get('/tugas', 'PageController@tugas');

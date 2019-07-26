@@ -5,7 +5,7 @@
 
   <v-content>
     <v-container fluid fill-height>
-      <v-flex align-center justify-center layout text-xs-center>
+      <v-flex align-center justify-center layout text-center>
         <v-avatar :tile="true" :size="logoSize">
           <img src="https://static.ivqonsanada.com/if-else/img/logo.svg" />
         </v-avatar>
@@ -37,7 +37,7 @@ export default {
       x: "right",
       mode: "multi-line",
       timeout: 6000,
-      text: "IF-ELSE Coming Soon!"
+      text: "IF ELSE Coming Soon!"
     };
   }
 };
