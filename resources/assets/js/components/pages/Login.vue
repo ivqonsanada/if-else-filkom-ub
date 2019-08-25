@@ -6,11 +6,8 @@
         <v-flex xs12 sm8 md4>
           <v-card>
             <v-card-text>
-              <form id="login_form" method="POST" action="/login" aria-label="Login">
+              <form id="login_form" aria-label="Login">
                 <input type="hidden" name="_token" :value="csrf_token" />
-
-                <!-- <v-layout row> -->
-                <!-- <v-flex xs12> -->
                 <v-text-field
                   prepend-icon="person"
                   v-model="nim"
@@ -22,10 +19,7 @@
                   label="NIM"
                   name="nim"
                 ></v-text-field>
-                <!-- </v-flex> -->
-                <!-- </v-layout> -->
-                <!-- <v-layout row> -->
-                <!-- <v-flex xs12> -->
+
                 <v-text-field
                   prepend-icon="lock"
                   v-model="password"
@@ -39,14 +33,12 @@
                   label="Password"
                   name="password"
                 ></v-text-field>
-                <!-- </v-flex>
-                </v-layout>-->
               </form>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-                :disabled="valid"
+                :disabled="!valid"
                 color="light-blue darken-4"
                 class="white--text"
                 @click="validate"
@@ -55,6 +47,10 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackcolor" top>
+        {{ text }}
+        <v-btn @click="snackbar = false" text>Close</v-btn>
+      </v-snackbar>
     </v-container>
   </v-content>
 </template>
@@ -66,7 +62,11 @@ export default {
     nim: "",
     password: "",
     show: false,
-    valid: true
+    valid: true,
+    snackbar: false,
+    text: "Aku rindu.",
+    timeout: 5000,
+    snackcolor: ""
   }),
   computed: {
     csrf_token() {
@@ -78,9 +78,29 @@ export default {
     validate() {
       this.$validator.validateAll().then(result => {
         if (result) {
-          //Manually submit form if not errors
-          document.getElementById("login_form").submit();
+          let form = document.getElementById("login_form");
+          let data = new FormData(form);
+          axios
+            .post("api/login", data)
+            .then(response => {
+              this.snackbar = true;
+              this.snackcolor = "success";
+              this.text = "Login berhasil.";
+              window.localStorage.setItem("token", response.data.success.token);
+              setTimeout(() => this.$router.push({ path: "/" }), 1000);
+              this.$store.dispatch("login", {});
+            })
+            .catch(e => {
+              this.text = e.response.data.error;
+              this.snackbar = true;
+              this.snackcolor = "error";
+            });
         }
+      });
+    },
+    login() {
+      this.$store.dispatch("login").then(() => {
+        this.$router.push("/");
       });
     }
   }

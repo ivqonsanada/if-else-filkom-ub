@@ -1,10 +1,10 @@
 
 <template>
   <v-content>
-    <vue-headful v-bind:title="post.title + ` | Blog`"></vue-headful>
+    <vue-headful v-bind:title="post.title + ` | News`"></vue-headful>
     <v-container fluid fill-height>
       <v-layout justify-center align-center>
-        <v-flex align-center justify-center layout xs12 sm6 md4>
+        <v-flex align-center justify-center layout xs12 class="lebar">
           <v-card>
             <v-card-title primary-title>
               <v-flex column>
@@ -25,7 +25,7 @@
                     <v-carousel-item
                       v-for="carousel in post.carousels"
                       :key="carousel.id"
-                      :src="`http://127.0.0.1:8000/img/blog/carousel/${carousel.post_id}/${carousel.img}`"
+                      :src="`http://ifelse.filkom.ub.ac.id/public/img/blog/carousel/${carousel.post_id}/${carousel.img}`"
                     ></v-carousel-item>
                   </v-carousel>
                 </div>
@@ -45,24 +45,33 @@
 export default {
   data() {
     return {
-      post: {},
+      post: {
+        title: "",
+        content: "",
+        tgl: "",
+        link: "",
+        img: "loading.png",
+        carousels: [
+          {
+            img: "loading.png"
+          }
+        ]
+      },
       appUrl: this.$appUrl,
       loading: true
     };
   },
-  created() {
+  mounted() {
     setTimeout(() => {
       this.loading = false;
     }, 500);
   },
+
   beforeCreate() {
     axios
       .get(`${this.$appUrl}/nyoba/${this.$route.params.id}`)
       .then(response => {
         this.post = response.data;
-      })
-      .catch(e => {
-        this.errors.push(e);
       });
   }
 };
@@ -70,11 +79,27 @@ export default {
 
 <style>
 p {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .v-card__title {
   font-size: 1rem;
   line-height: 1.5;
+}
+
+@media (min-width: 600px) {
+  .lebar {
+    flex-basis: 61% !important;
+    flex-grow: 0;
+    max-width: 61% !important;
+  }
+}
+
+@media (min-width: 800px) {
+  .lebar {
+    flex-basis: 41% !important;
+    flex-grow: 0;
+    max-width: 41% !important;
+  }
 }
 </style>

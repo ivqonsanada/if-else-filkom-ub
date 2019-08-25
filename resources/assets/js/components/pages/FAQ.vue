@@ -35,7 +35,7 @@ export default {
         {
           ask: "Tema IF ELSE tahun ini apa ya?",
           answer:
-            "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti yang berarti bersama sama dalam menghadapi segala masalah yang dihadapi maupun menggapai apa yang diinginkan secara bersama sama. Dengan diangkatnya tema ini juga, mahasiswa Teknik Informatika angkatan 2019 dapat memiliki solidaritas yang tinggi pada masing - masing individu dalam menyelesaikan permasalahan yang ada."
+            "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti bersama-sama dalam menghadapi segala masalah yang dihadapi maupun menggapai apa yang diinginkan secara bersama sama. Dengan diangkatnya tema ini juga, mahasiswa Teknik Informatika angkatan 2019 dapat memiliki solidaritas yang tinggi pada masing - masing individu dalam menyelesaikan permasalahan yang ada."
         }
       ]
     };

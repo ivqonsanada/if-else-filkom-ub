@@ -21,14 +21,19 @@
 // Route::get('/documentation', 'PageController@documentation');
 // Route::get('/rules', 'PageController@rules');
 
-Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('nyoba', 'PostController@index');
 Route::get('nyoba/{id?}', 'PostController@post');
 
+Route::get('youtube', function () {
+  return redirect()->away('https://www.youtube.com/channel/UCaAZt3JB9xgqj7xRosdtsig');
+});
+
+Route::get('pendamping-maba', 'PendampingController@index');
 
 Route::get('{any?}', 'PageController@index')->where('any', '.*');
+
+
 
 
 // Route::post('/home2', 'PageController@home2');

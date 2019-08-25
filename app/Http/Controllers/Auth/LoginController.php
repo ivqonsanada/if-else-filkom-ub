@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -51,7 +52,17 @@ class LoginController extends Controller
 
     protected function login(Request $request)
     {
-        // return var_dump($request->nim);
-        return redirect('/');
+        $login = [];
+        $login['user'] =
+            User::where('nim', $request->nim)
+            ->where('password', $request->password)->first();
+
+        if ($login['user']) {
+            $login['status'] = 'success';
+        } else {
+            $login['status'] = 'fail';
+        }
+
+        return response($login);
     }
 }

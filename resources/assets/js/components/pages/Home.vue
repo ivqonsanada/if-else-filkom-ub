@@ -1,21 +1,22 @@
 
 <template>
-  <v-content>
+  <v-content transition="fade-transition">
     <vue-headful title="Home | IF ELSE"></vue-headful>
-    <div class="parallax">
+    <!-- ['https://ub.ac.id/wp-content/uploads/2019/02/ub-2018-09.mp4'] -->
+    <video-bg :sources="video" img="http://ifelse.filkom.ub.ac.id/public/img/bg2.png">
       <v-container fluid fill-height>
         <v-flex align-center justify-space-between layout text-center column class="white--text">
           <div></div>
 
           <div>
             <v-avatar :tile="true" :size="logoSize" class="mb-4">
-              <img src="https://static.ivqonsanada.com/if-else/img/logo-noname.svg" />
+              <img src="http://ifelse.filkom.ub.ac.id/public/img/logo-noname.svg" />
             </v-avatar>
 
             <h1
               class="mt-3 mb-1"
               :class="{'display-2': $vuetify.breakpoint. smAndDown, 'display-3': $vuetify.breakpoint. mdAndUp}"
-            >Cooming Soon</h1>
+            >Coming Soon</h1>
             <h2
               :class="{'display-1': $vuetify.breakpoint. smAndDown, 'display-2': $vuetify.breakpoint. mdAndUp}"
             >Rangkaian 1</h2>
@@ -35,7 +36,7 @@
           </v-btn>
         </v-flex>
       </v-container>
-    </div>
+    </video-bg>
 
     <div class="blue-grey darken-3" id="ifelse">
       <v-container fluid>
@@ -68,24 +69,30 @@
             <v-layout wrap>
               <v-flex v-for="post in news.data" :key="post.title" md3 sm6 xs12>
                 <v-hover>
-                  <template v-slot:default="{ hover }">
-                    <v-card class="mx-1 my-3 lekung" color="grey lighten-4" :to="post.link">
-                      <v-img
-                        :aspect-ratio="16/9"
-                        :src="`http://ifelse.filkom.ub.ac.id/public/img/blog/${post.img}`"
-                      ></v-img>
-                      <v-card-text class="pt-4" style="position: relative;">
-                        <div class="font-weight-light grey--text subheading mb-2">{{ post.tgl }}</div>
-                        <h3 class="title font-weight-light mb-2">{{ post.title }}</h3>
-                      </v-card-text>
-
-                      <v-fade-transition>
-                        <v-overlay v-if="hover" absolute color="light-blue darken-4">
-                          <v-btn>See more info</v-btn>
-                        </v-overlay>
-                      </v-fade-transition>
-                    </v-card>
-                  </template>
+                  <v-card
+                    slot-scope="{ hover }"
+                    class="mx-1 my-3 lekung"
+                    color="grey lighten-4"
+                    :to="`news${post.link}`"
+                  >
+                    <v-img
+                      :aspect-ratio="16/9"
+                      :src="`http://ifelse.filkom.ub.ac.id/public/img/blog/${post.img}`"
+                      class="homenews"
+                    >
+                      <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out light-blue darken-4 v-card--reveal display-1 white--text"
+                          style="height: 100%;"
+                        >Read more</div>
+                      </v-expand-transition>
+                    </v-img>
+                    <v-card-text class="pt-4" style="position: relative;">
+                      <div class="font-weight-light grey--text subheading mb-2">{{ post.tgl }}</div>
+                      <h3 class="title font-weight-light mb-2">{{ post.title }}</h3>
+                    </v-card-text>
+                  </v-card>
                 </v-hover>
               </v-flex>
             </v-layout>
@@ -97,6 +104,7 @@
       </v-layout>
     </v-container>
   </v-content>
+  <!-- https://ub.ac.id/wp-content/uploads/2019/02/ub-2018-09.mp4 -->
 </template>
 
 <script>
@@ -110,20 +118,42 @@ export default {
       offset: 0,
       easing: "easeInOutCubic",
       page: 1,
-      news: [],
-      overlay: false
+      video: ["https://ub.ac.id/wp-content/uploads/2019/02/ub-2018-09.mp4"],
+      news: {
+        data: [
+          {
+            title: "News 4",
+            tgl: "",
+            link: "",
+            img: "loading.png"
+          },
+          {
+            title: "News 3",
+            tgl: "",
+            link: "",
+            img: "loading.png"
+          },
+          {
+            title: "News 2",
+            tgl: "",
+            link: "",
+            img: "loading.png"
+          },
+          {
+            title: "News 1",
+            tgl: "",
+            link: "",
+            img: "loading.png"
+          }
+        ]
+      }
     };
   },
   methods: {
     watchCurrentPage(page) {
-      axios
-        .get(`${this.$appUrl}/nyoba?page=${page}`)
-        .then(response => {
-          this.news = response.data;
-        })
-        .catch(e => {
-          this.errors.push(e);
-        });
+      axios.get(`${this.$appUrl}/nyoba?page=${page}`).then(response => {
+        this.news = response.data;
+      });
     }
   },
   computed: {
@@ -138,43 +168,24 @@ export default {
       };
     }
   },
-
   beforeCreate() {
-    axios
-      .get(`${this.$appUrl}/nyoba?page=1`)
-      .then(response => {
-        this.news = response.data;
-      })
-      .catch(e => {
-        this.errors.push(e);
-      });
+    axios.get(`${this.$appUrl}/nyoba?page=1`).then(response => {
+      this.news = response.data;
+    });
   }
 };
 </script>
 
 <style>
-.parallax {
-  /* The image used */
-  background-image: url("http://ifelse.filkom.ub.ac.id/public/img/bg2.png");
-
-  /* Set a specific height */
-  height: 95vh;
-
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .v-card--reveal {
   align-items: center;
   bottom: 0;
   justify-content: center;
-  opacity: 0.95;
+  opacity: 0.9;
   position: absolute;
   width: 100%;
 }
+
 .end {
   margin-top: auto;
 }
@@ -185,5 +196,19 @@ export default {
 #my-5 {
   margin-top: 48px !important;
   margin-bottom: 48px !important;
+}
+
+.VideoBg__content {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.homenews {
+  height: 264px;
+}
+
+@media (min-width: 800px) {
+  .homenews {
+    height: 450px;
+  }
 }
 </style>

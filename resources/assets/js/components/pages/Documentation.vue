@@ -65,7 +65,7 @@
           <v-card>
             <v-card-title primary-title>
               <div>
-                <h3 class="display-3 mb-0">Cooming Soon</h3>
+                <h3 class="display-3 mb-0">Coming Soon</h3>
               </div>
             </v-card-title>
           </v-card>
@@ -82,7 +82,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .v-card--reveal {
   align-items: center;
   bottom: 0;

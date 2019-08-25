@@ -1,12 +1,14 @@
 // 1. Define route components.
 // These can be imported from other files
-import Home from "./pages/Home.vue";
-import Rules from "./pages/Rules.vue";
-import Documentation from "./pages/Documentation.vue";
-import FAQ from "./pages/FAQ.vue";
-import Login from "./pages/Login.vue";
+import Home from "./components/pages/Home.vue";
+import Rules from "./components/pages/Rules.vue";
+import Documentation from "./components/pages/Documentation.vue";
+import FAQ from "./components/pages/FAQ.vue";
+import Login from "./components/pages/Login.vue";
 import Page404 from "./components/error/Page404.vue";
-import News from "./pages/News.vue";
+import News from "./components/pages/News.vue";
+import Nilai from "./components/pages/Nilai.vue";
+import Tugas from "./components/pages/Tugas.vue";
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -40,9 +42,25 @@ const routes = [
     name: "Login"
   },
   {
-    path: "/blog/:id",
+    path: "/news/:id",
     component: News,
     name: "News"
+  },
+  {
+    path: "/nilai",
+    component: Nilai,
+    name: "Nilai",
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/tugas",
+    component: Tugas,
+    name: "Tugas",
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/*",

@@ -1,5 +1,13 @@
 webpackJsonp([1],{
 
+/***/ 100:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(15);
+
+
+/***/ }),
+
 /***/ 14:
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -238,7 +246,8 @@ var __assign = undefined && undefined.__assign || function () {
         staticClass: 'v-alert__dismissible',
         props: {
           color: color,
-          icon: true
+          icon: true,
+          small: true
         },
         attrs: {
           'aria-label': this.$vuetify.lang.t(this.closeLabel)
@@ -464,6 +473,11 @@ var __assign = undefined && undefined.__assign || function () {
   computed: {
     isDark: function isDark() {
       return this.$vuetify.theme.dark;
+    }
+  },
+  beforeCreate: function beforeCreate() {
+    if (!this.$vuetify || this.$vuetify === this.$root) {
+      throw new Error('Vuetify is not properly initialized, see https://vuetifyjs.com/getting-started/quick-start#bootstrapping-the-vuetify-object');
     }
   },
   render: function render(h) {
@@ -3239,8 +3253,7 @@ var __spread = undefined && undefined.__spread || function () {
       return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
         props: {
           color: color,
-          fab: !hasMonth,
-          rounded: hasMonth,
+          fab: true,
           depressed: true,
           small: true
         },
@@ -3458,10 +3471,11 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _calendar_with_events_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar-with-events.sass */ "./src/components/VCalendar/mixins/calendar-with-events.sass");
 /* harmony import */ var _calendar_with_events_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_calendar_with_events_sass__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _calendar_base__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./calendar-base */ "./src/components/VCalendar/mixins/calendar-base.ts");
-/* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/props */ "./src/components/VCalendar/util/props.ts");
-/* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
-/* harmony import */ var _util_events__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/events */ "./src/components/VCalendar/util/events.ts");
+/* harmony import */ var _directives_ripple__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../directives/ripple */ "./src/directives/ripple/index.ts");
+/* harmony import */ var _calendar_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar-base */ "./src/components/VCalendar/mixins/calendar-base.ts");
+/* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/props */ "./src/components/VCalendar/util/props.ts");
+/* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+/* harmony import */ var _util_events__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/events */ "./src/components/VCalendar/util/events.ts");
 var __assign = undefined && undefined.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -3479,6 +3493,8 @@ var __assign = undefined && undefined.__assign || function () {
 }; // Styles
 
 
+ // Directives
+
  // Mixins
 
  // Util
@@ -3488,9 +3504,12 @@ var __assign = undefined && undefined.__assign || function () {
 
 /* @vue/component */
 
-/* harmony default export */ __webpack_exports__["default"] = (_calendar_base__WEBPACK_IMPORTED_MODULE_1__["default"].extend({
+/* harmony default export */ __webpack_exports__["default"] = (_calendar_base__WEBPACK_IMPORTED_MODULE_2__["default"].extend({
   name: 'calendar-with-events',
-  props: _util_props__WEBPACK_IMPORTED_MODULE_2__["default"].events,
+  directives: {
+    ripple: _directives_ripple__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: _util_props__WEBPACK_IMPORTED_MODULE_3__["default"].events,
   computed: {
     noEvents: function noEvents() {
       return this.events.length === 0;
@@ -3499,7 +3518,7 @@ var __assign = undefined && undefined.__assign || function () {
       var _this = this;
 
       return this.events.map(function (input, index) {
-        return Object(_util_events__WEBPACK_IMPORTED_MODULE_4__["parseEvent"])(input, index, _this.eventStart, _this.eventEnd);
+        return Object(_util_events__WEBPACK_IMPORTED_MODULE_5__["parseEvent"])(input, index, _this.eventStart, _this.eventEnd);
       });
     },
     eventColorFunction: function eventColorFunction() {
@@ -3638,7 +3657,7 @@ var __assign = undefined && undefined.__assign || function () {
       var eventMarginBottom = this.eventMarginBottom;
       var relativeOffset = (offset - index) * (eventHeight + eventMarginBottom); // 1 = margin bottom
 
-      var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["getDayIdentifier"])(day);
+      var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["getDayIdentifier"])(day);
       var start = dayIdentifier === event.startIdentifier;
       var end = dayIdentifier === event.endIdentifier;
       var scope = {
@@ -3674,7 +3693,7 @@ var __assign = undefined && undefined.__assign || function () {
           event = _a.event,
           columnCount = _a.columnCount,
           column = _a.column;
-      var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["getDayIdentifier"])(day);
+      var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["getDayIdentifier"])(day);
       var start = event.startIdentifier >= dayIdentifier;
       var end = event.endIdentifier > dayIdentifier;
       var top = start ? day.timeToY(event.start) : 0;
@@ -3750,37 +3769,37 @@ var __assign = undefined && undefined.__assign || function () {
       });
     },
     getEventsForDay: function getEventsForDay(day) {
-      var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["getDayIdentifier"])(day);
+      var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["getDayIdentifier"])(day);
       return this.parsedEvents.filter(function (event) {
-        return Object(_util_events__WEBPACK_IMPORTED_MODULE_4__["isEventOn"])(event, identifier);
+        return Object(_util_events__WEBPACK_IMPORTED_MODULE_5__["isEventOn"])(event, identifier);
       });
     },
     getEventsForDayAll: function getEventsForDayAll(day) {
-      var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["getDayIdentifier"])(day);
+      var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["getDayIdentifier"])(day);
       return this.parsedEvents.filter(function (event) {
-        return event.allDay && Object(_util_events__WEBPACK_IMPORTED_MODULE_4__["isEventOn"])(event, identifier);
+        return event.allDay && Object(_util_events__WEBPACK_IMPORTED_MODULE_5__["isEventOn"])(event, identifier);
       });
     },
     getEventsForDayTimed: function getEventsForDayTimed(day) {
-      var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["getDayIdentifier"])(day);
+      var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["getDayIdentifier"])(day);
       return this.parsedEvents.filter(function (event) {
-        return !event.allDay && Object(_util_events__WEBPACK_IMPORTED_MODULE_4__["isEventOn"])(event, identifier);
+        return !event.allDay && Object(_util_events__WEBPACK_IMPORTED_MODULE_5__["isEventOn"])(event, identifier);
       });
     },
     isSameColumn: function isSameColumn(a, b) {
-      var astart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["parseTime"])(a.event.start);
-      var bstart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["parseTime"])(b.event.start);
+      var astart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["parseTime"])(a.event.start);
+      var bstart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["parseTime"])(b.event.start);
       var diff = astart - bstart;
       var abs = diff < 0 ? -diff : diff;
       return abs < this.eventOverlapThreshold;
     },
     isOverlapping: function isOverlapping(a, b) {
-      var astart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["parseTime"])(a.event.start);
-      var bstart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["parseTime"])(b.event.start);
+      var astart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["parseTime"])(a.event.start);
+      var bstart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["parseTime"])(b.event.start);
 
       if (a.offset < b.offset && bstart < astart) {
         var aend = astart + this.eventOverlapThreshold;
-        var bend = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_3__["parseTime"])(b.event.end);
+        var bend = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_4__["parseTime"])(b.event.end);
         return !(astart >= bend || aend <= bstart);
       }
 
@@ -3912,7 +3931,7 @@ var __assign = undefined && undefined.__assign || function () {
         }
 
         visuals.sort(function (a, b) {
-          return a.column - b.column || a.offset - b.offset;
+          return a.offset - b.offset || a.column - b.column;
         });
         return visuals;
       };
@@ -4351,8 +4370,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     end: {
       type: String,
-      validate: _timestamp__WEBPACK_IMPORTED_MODULE_0__["validateTimestamp"],
-      default: '0000-00-00'
+      validate: _timestamp__WEBPACK_IMPORTED_MODULE_0__["validateTimestamp"]
     },
     weekdays: {
       type: Array,
@@ -5747,7 +5765,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_VCheckbox__WEBPACK_IMPORTED_MODULE_0__["default"]);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  $_vuetify_subcomponents: {
+    VCheckbox: _VCheckbox__WEBPACK_IMPORTED_MODULE_0__["default"],
+    VSimpleCheckbox: _VSimpleCheckbox__WEBPACK_IMPORTED_MODULE_1__["default"]
+  }
+});
 
 /***/ }),
 
@@ -8046,21 +8069,9 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     computedItemsPerPageOptions: function computedItemsPerPageOptions() {
       var _this = this;
 
-      var itemsPerPageOptions = this.itemsPerPageOptions.map(function (option) {
+      return this.itemsPerPageOptions.map(function (option) {
         if (_typeof(option) === 'object') return option;else return _this.genItemsPerPageOption(option);
       });
-      var customItemsPerPage = !itemsPerPageOptions.find(function (option) {
-        return option.value === _this.options.itemsPerPage;
-      });
-
-      if (customItemsPerPage) {
-        itemsPerPageOptions.push(this.genItemsPerPageOption(this.options.itemsPerPage));
-        itemsPerPageOptions.sort(function (a, b) {
-          if (a.value === -1) return 1;else if (b.value === -1) return -1;else return a.value - b.value;
-        });
-      }
-
-      return itemsPerPageOptions;
     }
   },
   methods: {
@@ -8100,6 +8111,11 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
       };
     },
     genItemsPerPageSelect: function genItemsPerPageSelect() {
+      var value = this.options.itemsPerPage;
+      var computedIPPO = this.computedItemsPerPageOptions;
+      if (computedIPPO.length > 0 && !computedIPPO.find(function (ippo) {
+        return ippo.value === value;
+      })) value = computedIPPO[0];
       return this.$createElement('div', {
         staticClass: 'v-data-footer__select'
       }, [this.$vuetify.lang.t(this.itemsPerPageText), this.$createElement(_VSelect_VSelect__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -8108,8 +8124,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
         },
         props: {
           disabled: this.disableItemsPerPage,
-          items: this.computedItemsPerPageOptions,
-          value: this.options.itemsPerPage,
+          items: computedIPPO,
+          value: value,
           hideDetails: true,
           auto: true,
           minWidth: '75px'
@@ -9134,7 +9150,9 @@ function searchTableItems(items, search, headersWithCustomFilters, headersWithou
       return children;
     },
     genEmptyWrapper: function genEmptyWrapper(content) {
-      return this.$createElement('tr', [this.$createElement('td', {
+      return this.$createElement('tr', {
+        staticClass: 'v-data-table__empty-wrapper'
+      }, [this.$createElement('td', {
         attrs: {
           colspan: this.computedHeadersLength
         }
@@ -9726,6 +9744,12 @@ var __spread = undefined && undefined.__spread || function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_0__["default"])(_mixins_header__WEBPACK_IMPORTED_MODULE_3__["default"]).extend({
   name: 'v-data-table-header-mobile',
+  props: {
+    sortByText: {
+      type: String,
+      default: '$vuetify.dataTable.sortBy'
+    }
+  },
   methods: {
     genSortChip: function genSortChip(props) {
       var _this = this;
@@ -9759,16 +9783,17 @@ var __spread = undefined && undefined.__spread || function () {
     genSortSelect: function genSortSelect() {
       var _this = this;
 
+      var sortHeaders = this.headers.filter(function (h) {
+        return h.sortable !== false && h.value !== 'data-table-select';
+      });
       return this.$createElement(_VSelect_VSelect__WEBPACK_IMPORTED_MODULE_1__["default"], {
         props: {
-          label: 'Sort by',
-          items: this.headers.filter(function (h) {
-            return h.value !== 'data-table-select';
-          }),
+          label: this.$vuetify.lang.t(this.sortByText),
+          items: sortHeaders,
           hideDetails: true,
           multiple: this.options.multiSort,
           value: this.options.multiSort ? this.options.sortBy : this.options.sortBy[0],
-          disabled: this.disableSort
+          disabled: sortHeaders.length === 0 || this.disableSort
         },
         on: {
           change: function change(v) {
@@ -10028,9 +10053,9 @@ var __assign = undefined && undefined.__assign || function () {
 /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_mixins_themeable__WEBPACK_IMPORTED_MODULE_2__["default"]).extend({
   name: 'v-simple-table',
   props: {
+    dense: Boolean,
     fixedHeader: Boolean,
-    height: [Number, String],
-    dense: Boolean
+    height: [Number, String]
   },
   computed: {
     classes: function classes() {
@@ -10364,6 +10389,7 @@ var __assign = undefined && undefined.__assign || function () {
     },
     genSortIcon: function genSortIcon() {
       return this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_0__["default"], {
+        staticClass: 'v-data-table-header__icon',
         props: {
           size: 18
         }
@@ -13164,12 +13190,10 @@ var __spread = undefined && undefined.__spread || function () {
     genPrependSlot: function genPrependSlot() {
       var _this = this;
 
+      if (!this.prependIcon) return null;
       var icon = this.genIcon('prepend', function () {
         _this.$refs.input.click();
       });
-      icon.data.attrs = {
-        tabindex: 0
-      };
       return this.genSlot('prepend', 'outer', [icon]);
     },
     genSelectionText: function genSelectionText() {
@@ -13212,7 +13236,14 @@ var __spread = undefined && undefined.__spread || function () {
     onInput: function onInput(e) {
       var files = __spread(e.target.files || []);
 
-      this.internalValue = this.isMultiple ? files : files[0];
+      this.internalValue = this.isMultiple ? files : files[0]; // Set initialValue here otherwise isFocused
+      // watcher in VTextField will emit a change
+      // event whenever the component is blurred
+
+      this.initialValue = this.internalValue;
+    },
+    onKeyDown: function onKeyDown(e) {
+      this.$emit('keydown', e);
     },
     truncateText: function truncateText(str) {
       if (str.length < Number(this.truncateLength)) return str;
@@ -13416,8 +13447,8 @@ var __assign = undefined && undefined.__assign || function () {
   name: 'v-form',
   inheritAttrs: false,
   props: {
-    value: Boolean,
-    lazyValidation: Boolean
+    lazyValidation: Boolean,
+    value: Boolean
   },
   data: function data() {
     return {
@@ -13471,9 +13502,9 @@ var __assign = undefined && undefined.__assign || function () {
 
     /** @public */
     validate: function validate() {
-      return this.inputs.every(function (input) {
-        return input.validate(true);
-      });
+      return this.inputs.filter(function (input) {
+        return !input.validate(true);
+      }).length === 0;
     },
 
     /** @public */
@@ -13754,14 +13785,17 @@ var cache = new Map();
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _grid_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_grid.sass */ "./src/components/VGrid/_grid.sass");
 /* harmony import */ var _grid_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_grid_sass__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _grid__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./grid */ "./src/components/VGrid/grid.ts");
-/* harmony import */ var _util_mergeData__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/mergeData */ "./src/util/mergeData.ts");
+/* harmony import */ var _VGrid_sass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VGrid.sass */ "./src/components/VGrid/VGrid.sass");
+/* harmony import */ var _VGrid_sass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_VGrid_sass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _grid__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./grid */ "./src/components/VGrid/grid.ts");
+/* harmony import */ var _util_mergeData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mergeData */ "./src/util/mergeData.ts");
+
 
 
 
 /* @vue/component */
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_grid__WEBPACK_IMPORTED_MODULE_1__["default"])('container').extend({
+/* harmony default export */ __webpack_exports__["default"] = (Object(_grid__WEBPACK_IMPORTED_MODULE_2__["default"])('container').extend({
   name: 'v-container',
   functional: true,
   props: {
@@ -13806,7 +13840,7 @@ __webpack_require__.r(__webpack_exports__);
       data.domProps.id = props.id;
     }
 
-    return h(props.tag, Object(_util_mergeData__WEBPACK_IMPORTED_MODULE_2__["default"])(data, {
+    return h(props.tag, Object(_util_mergeData__WEBPACK_IMPORTED_MODULE_3__["default"])(data, {
       staticClass: 'container',
       class: Array({
         'container--fluid': props.fluid
@@ -15291,13 +15325,12 @@ var BaseItemGroup = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])
         'v-item-group': true
       }, this.themeClasses);
     },
+    selectedIndex: function selectedIndex() {
+      return this.selectedItem && this.items.indexOf(this.selectedItem) || -1;
+    },
     selectedItem: function selectedItem() {
-      var _this = this;
-
       if (this.multiple) return undefined;
-      return this.items.find(function (item, index) {
-        return _this.toggleMethod(_this.getValue(item, index));
-      });
+      return this.selectedItems[0];
     },
     selectedItems: function selectedItems() {
       var _this = this;
@@ -16430,6 +16463,7 @@ var VListItemSubtitle = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_0__["creat
     VListItemAvatar: _VListItemAvatar__WEBPACK_IMPORTED_MODULE_6__["default"],
     VListItemContent: VListItemContent,
     VListItemGroup: _VListItemGroup__WEBPACK_IMPORTED_MODULE_4__["default"],
+    VListItemIcon: _VListItemIcon__WEBPACK_IMPORTED_MODULE_7__["default"],
     VListItemSubtitle: VListItemSubtitle,
     VListItemTitle: VListItemTitle
   }
@@ -17173,7 +17207,8 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_12__["default"])(O
       touchArea: {
         left: 0,
         right: 0
-      }
+      },
+      stackMinZIndex: 6
     };
   },
   computed: {
@@ -17894,7 +17929,8 @@ var __spread = undefined && undefined.__spread || function () {
       }, this.themeClasses);
     },
     items: function items() {
-      var maxLength = parseInt(this.totalVisible, 10) || this.maxButtons;
+      var totalVisible = parseInt(this.totalVisible, 10);
+      var maxLength = totalVisible > this.maxButtons ? this.maxButtons : totalVisible || this.maxButtons;
 
       if (this.length <= maxLength) {
         return this.range(1, this.length);
@@ -18639,7 +18675,8 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_7__["default"])(_m
       var backgroundOpacity = this.backgroundOpacity == null ? this.backgroundColor ? 1 : 0.3 : parseFloat(this.backgroundOpacity);
       return {
         opacity: backgroundOpacity,
-        width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["convertToUnit"])(this.normalizedBuffer, '%')
+        left: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["convertToUnit"])(this.normalizedValue, '%'),
+        width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["convertToUnit"])(this.normalizedBuffer - this.normalizedValue, '%')
       };
     },
     classes: function classes() {
@@ -19569,7 +19606,9 @@ __webpack_require__.r(__webpack_exports__);
       return props;
     },
     genHoverIndex: function genHoverIndex(e, i) {
-      return i + (this.isHalfEvent(e) ? 0.5 : 1);
+      var isHalf = this.isHalfEvent(e);
+      if (this.$vuetify.rtl) isHalf = !isHalf;
+      return i + (isHalf ? 0.5 : 1);
     },
     getIconName: function getIconName(props) {
       var isFull = this.isHovering ? props.isHovered : props.isFilled;
@@ -19852,7 +19891,7 @@ var defaultMenuProps = {
   closeOnContentClick: false,
   disableKeys: true,
   openOnClick: false,
-  maxHeight: 300
+  maxHeight: 304
 };
 var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_11__["default"])(_VTextField_VTextField__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_comparable__WEBPACK_IMPORTED_MODULE_6__["default"], _mixins_filterable__WEBPACK_IMPORTED_MODULE_7__["default"]);
 /* @vue/component */
@@ -21268,12 +21307,21 @@ var BaseSlideGroup = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_6__["default"]
       var maxScrollOffset = content.clientWidth - wrapper.clientWidth;
       content.style.setProperty('transition', null);
       content.style.setProperty('willChange', null);
-      /* istanbul ignore else */
 
-      if (this.scrollOffset < 0 || !this.isOverflowing) {
-        this.scrollOffset = 0;
-      } else if (this.scrollOffset >= maxScrollOffset) {
-        this.scrollOffset = maxScrollOffset;
+      if (this.$vuetify.rtl) {
+        /* istanbul ignore else */
+        if (this.scrollOffset > 0 || !this.isOverflowing) {
+          this.scrollOffset = 0;
+        } else if (this.scrollOffset <= -maxScrollOffset) {
+          this.scrollOffset = -maxScrollOffset;
+        }
+      } else {
+        /* istanbul ignore else */
+        if (this.scrollOffset < 0 || !this.isOverflowing) {
+          this.scrollOffset = 0;
+        } else if (this.scrollOffset >= maxScrollOffset) {
+          this.scrollOffset = maxScrollOffset;
+        }
       }
     },
     overflowCheck: function overflowCheck(e, fn) {
@@ -21287,12 +21335,12 @@ var BaseSlideGroup = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_6__["default"]
         return;
       }
 
-      if (this.centerActive) {
+      if (this.selectedIndex === 0 || !this.centerActive && !this.isOverflowing) {
+        this.scrollOffset = 0;
+      } else if (this.centerActive) {
         this.scrollOffset = this.calculateCenteredOffset(this.selectedItem.$el, this.widths, this.$vuetify.rtl);
       } else if (this.isOverflowing) {
         this.scrollOffset = this.calculateUpdatedOffset(this.selectedItem.$el, this.widths, this.$vuetify.rtl, this.scrollOffset);
-      } else {
-        this.scrollOffset = 0;
       }
     },
     calculateUpdatedOffset: function calculateUpdatedOffset(selectedElement, widths, rtl, currentScrollOffset) {
@@ -21305,7 +21353,7 @@ var BaseSlideGroup = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_6__["default"]
 
       var totalWidth = widths.wrapper + currentScrollOffset;
       var itemOffset = clientWidth + offsetLeft;
-      var additionalOffset = clientWidth * 0.3;
+      var additionalOffset = clientWidth * 0.4;
 
       if (offsetLeft < currentScrollOffset) {
         currentScrollOffset = Math.max(offsetLeft - additionalOffset, 0);
@@ -21490,34 +21538,17 @@ var __assign = undefined && undefined.__assign || function () {
   props: {
     disabled: Boolean,
     inverseLabel: Boolean,
-    min: {
-      type: [Number, String],
-      default: 0
-    },
     max: {
       type: [Number, String],
       default: 100
     },
+    min: {
+      type: [Number, String],
+      default: 0
+    },
     step: {
       type: [Number, String],
       default: 1
-    },
-    ticks: {
-      type: [Boolean, String],
-      default: false,
-      validator: function validator(v) {
-        return typeof v === 'boolean' || v === 'always';
-      }
-    },
-    tickLabels: {
-      type: Array,
-      default: function _default() {
-        return [];
-      }
-    },
-    tickSize: {
-      type: [Number, String],
-      default: 2
     },
     thumbColor: String,
     thumbLabel: {
@@ -21530,6 +21561,23 @@ var __assign = undefined && undefined.__assign || function () {
     thumbSize: {
       type: [Number, String],
       default: 32
+    },
+    tickLabels: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    ticks: {
+      type: [Boolean, String],
+      default: false,
+      validator: function validator(v) {
+        return typeof v === 'boolean' || v === 'always';
+      }
+    },
+    tickSize: {
+      type: [Number, String],
+      default: 2
     },
     trackColor: String,
     trackFillColor: String,
@@ -22206,6 +22254,10 @@ var __assign = undefined && undefined.__assign || function () {
         return [];
       }
     },
+    labelSize: {
+      type: [Number, String],
+      default: 7
+    },
     lineWidth: {
       type: [String, Number],
       default: 4
@@ -22214,11 +22266,11 @@ var __assign = undefined && undefined.__assign || function () {
       type: [String, Number],
       default: 8
     },
+    showLabels: Boolean,
     smooth: {
       type: [Boolean, Number, String],
       default: false
     },
-    showLabels: Boolean,
     type: {
       type: String,
       default: 'trend',
@@ -22235,10 +22287,6 @@ var __assign = undefined && undefined.__assign || function () {
     width: {
       type: [Number, String],
       default: 300
-    },
-    labelSize: {
-      type: [Number, String],
-      default: 7
     }
   },
   data: function data() {
@@ -22781,7 +22829,7 @@ __webpack_require__.r(__webpack_exports__);
         'v-speed-dial--left': this.left,
         'v-speed-dial--absolute': this.absolute,
         'v-speed-dial--fixed': this.fixed
-      }, _a["v-speed-dial--direction-" + this.direction] = true, _a;
+      }, _a["v-speed-dial--direction-" + this.direction] = true, _a['v-speed-dial--is-active'] = this.isActive, _a;
     }
   },
   render: function render(h) {
@@ -22816,7 +22864,7 @@ __webpack_require__.r(__webpack_exports__);
     if (this.isActive) {
       var btnCount_1 = 0;
       children = (this.$slots.default || []).map(function (b, i) {
-        if (b.tag && typeof b.componentOptions !== 'undefined' && b.componentOptions.Ctor.options.name === 'v-btn') {
+        if (b.tag && typeof b.componentOptions !== 'undefined' && (b.componentOptions.Ctor.options.name === 'v-btn' || b.componentOptions.Ctor.options.name === 'v-tooltip')) {
           btnCount_1++;
           return h('div', {
             style: {
@@ -22928,8 +22976,8 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_4__["default"])(Ob
     };
   },
   props: {
-    nonLinear: Boolean,
     altLabels: Boolean,
+    nonLinear: Boolean,
     vertical: Boolean
   },
   data: function data() {
@@ -23195,6 +23243,7 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_4__["default"])(_m
       type: String,
       default: '$vuetify.icons.complete'
     },
+    editable: Boolean,
     editIcon: {
       type: String,
       default: '$vuetify.icons.edit'
@@ -23203,7 +23252,6 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_4__["default"])(_m
       type: String,
       default: '$vuetify.icons.error'
     },
-    editable: Boolean,
     rules: {
       type: Array,
       default: function _default() {
@@ -23688,7 +23736,8 @@ var __assign = undefined && undefined.__assign || function () {
     var data = {
       staticClass: 'v-system-bar',
       class: this.classes,
-      style: this.styles
+      style: this.styles,
+      on: this.$listeners
     };
     return h('div', this.setBackgroundColor(this.color, data), Object(_util_helpers__WEBPACK_IMPORTED_MODULE_5__["getSlot"])(this));
   }
@@ -23931,8 +23980,8 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_9__["default"])(_m
     },
     alignWithTitle: Boolean,
     backgroundColor: String,
-    centered: Boolean,
     centerActive: Boolean,
+    centered: Boolean,
     fixedTabs: Boolean,
     grow: Boolean,
     height: {
@@ -23957,6 +24006,10 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_9__["default"])(_m
     right: Boolean,
     showArrows: Boolean,
     sliderColor: String,
+    sliderSize: {
+      type: [Number, String],
+      default: 2
+    },
     vertical: Boolean
   },
   data: function data() {
@@ -24043,11 +24096,11 @@ var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_9__["default"])(_m
 
         var el = activeTab.$el;
         _this.slider = {
-          height: _this.vertical ? el.offsetHeight : 2,
+          height: !_this.vertical ? Number(_this.sliderSize) : el.scrollHeight,
           left: _this.vertical ? 0 : el.offsetLeft,
           right: _this.vertical ? 0 : el.offsetLeft + el.offsetWidth,
           top: el.offsetTop,
-          width: _this.vertical ? 2 : el.scrollWidth
+          width: _this.vertical ? Number(_this.sliderSize) : el.scrollWidth
         };
       });
       return true;
@@ -24259,7 +24312,9 @@ var __values = undefined && undefined.__values || function (o) {
   computed: {
     classes: function classes() {
       return __assign({}, _VSlideGroup_VSlideGroup__WEBPACK_IMPORTED_MODULE_0__["BaseSlideGroup"].options.computed.classes.call(this), {
-        'v-tabs-bar': true
+        'v-tabs-bar': true,
+        'v-tabs-bar--is-mobile': this.isMobile,
+        'v-tabs-bar--show-arrows': this.showArrows
       }, this.themeClasses);
     }
   },
@@ -24547,8 +24602,8 @@ var dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', 'mo
     prependInnerIcon: String,
     reverse: Boolean,
     rounded: Boolean,
-    singleLine: Boolean,
     shaped: Boolean,
+    singleLine: Boolean,
     solo: Boolean,
     soloInverted: Boolean,
     suffix: String,
@@ -24636,6 +24691,9 @@ var dirtyTypes = ['color', 'file', 'time', 'date', 'datetime-local', 'week', 'mo
   watch: {
     labelValue: 'setLabelWidth',
     outlined: 'setLabelWidth',
+    prefix: function prefix() {
+      this.$nextTick(this.setPrefixWidth);
+    },
     isFocused: function isFocused(val) {
       // Sets validationState from validatable
       this.hasColor = val;
@@ -26436,10 +26494,6 @@ __webpack_require__.r(__webpack_exports__);
       type: [Number, String],
       default: 0
     },
-    debounce: {
-      type: [Number, String],
-      default: 0
-    },
     disabled: Boolean,
     fixed: {
       type: Boolean,
@@ -27730,7 +27784,8 @@ var __assign = undefined && undefined.__assign || function () {
         staticClass: "v-window__" + direction
       }, [this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
         props: {
-          icon: true
+          icon: true,
+          small: true
         },
         attrs: {
           'aria-label': this.$vuetify.lang.t("$vuetify.carousel." + direction)
@@ -27743,7 +27798,7 @@ var __assign = undefined && undefined.__assign || function () {
         }
       }, [this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], {
         props: {
-          size: 40
+          large: true
         }
       }, icon)])]);
     },
@@ -29366,7 +29421,7 @@ function () {
 
   Vuetify.install = _install__WEBPACK_IMPORTED_MODULE_0__["install"];
   Vuetify.installed = false;
-  Vuetify.version = "2.0.0";
+  Vuetify.version = "2.0.5";
   return Vuetify;
 }();
 
@@ -29515,7 +29570,8 @@ __webpack_require__.r(__webpack_exports__);
       sortDescending: ': Sorted descending. Activate to remove sorting.',
       sortAscending: ': Sorted ascending. Activate to sort descending.',
       sortNone: ': Not sorted. Activate to sort ascending.'
-    }
+    },
+    sortBy: 'Sort by'
   },
   dataFooter: {
     itemsPerPageText: 'Items per page:',
@@ -30204,7 +30260,7 @@ function searchChildren(children) {
     getClickableDependentElements: function getClickableDependentElements() {
       var result = [this.$el];
       if (this.$refs.content) result.push(this.$refs.content);
-      if (this.overlay) result.push(this.overlay);
+      if (this.overlay) result.push(this.overlay.$el);
       result.push.apply(result, __spread(this.getOpenDependentElements()));
       return result;
     }
@@ -33196,8 +33252,9 @@ function goTo(_target, _settings) {
       var timeElapsed = currentTime - startTime;
       var progress = Math.abs(settings.duration ? Math.min(timeElapsed / settings.duration, 1) : 1);
       container.scrollTop = Math.floor(startLocation + (targetLocation - startLocation) * ease(progress));
+      var clientHeight = container === document.body ? document.documentElement.clientHeight : container.clientHeight;
 
-      if (progress === 1 || container.clientHeight + container.scrollTop === container.scrollHeight) {
+      if (progress === 1 || clientHeight + container.scrollTop === container.scrollHeight) {
         return resolve(targetLocation);
       }
 
@@ -33446,7 +33503,7 @@ var icons = {
   menu: 'fa fa-bars',
   subgroup: 'fa fa-caret-down',
   dropdown: 'fa fa-caret-down',
-  radioOn: 'fa fa-dot-circle',
+  radioOn: 'fa fa-dot-circle-o',
   radioOff: 'fa fa-circle-o',
   edit: 'fa fa-pencil',
   ratingEmpty: 'fa fa-star-o',
@@ -33997,14 +34054,11 @@ function (_super) {
 
   Theme.prototype.init = function (root, ssrContext) {
     if (this.disabled) return;
-    var meta = Boolean(root.$meta); // TODO: don't import public types from /src
-
-    var ssr = Boolean(ssrContext);
     /* istanbul ignore else */
 
-    if (meta) {
-      this.initNuxt(root);
-    } else if (ssr) {
+    if (root.$meta) {
+      this.initVueMeta(root);
+    } else if (ssrContext) {
       this.initSSR(ssrContext);
     }
 
@@ -34062,16 +34116,20 @@ function (_super) {
     document.head.appendChild(this.styleEl);
   };
 
-  Theme.prototype.initNuxt = function (root) {
+  Theme.prototype.initVueMeta = function (root) {
+    var _this = this;
+
     var options = this.options || {};
     root.$children.push(new vue__WEBPACK_IMPORTED_MODULE_2___default.a({
-      head: {
-        style: [{
-          cssText: this.generatedStyles,
-          type: 'text/css',
-          id: 'vuetify-theme-stylesheet',
-          nonce: options.cspNonce
-        }]
+      head: function head() {
+        return {
+          style: [{
+            cssText: _this.generatedStyles,
+            type: 'text/css',
+            id: 'vuetify-theme-stylesheet',
+            nonce: options.cspNonce
+          }]
+        };
       }
     }));
   };
@@ -48379,14 +48437,6 @@ module.exports = g;
 
 /***/ }),
 
-/***/ 77:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(15);
-
-
-/***/ }),
-
 /***/ 9:
 /***/ (function(module, exports) {
 
@@ -48578,4 +48628,4 @@ process.umask = function() { return 0; };
 
 /***/ })
 
-},[77]);
+},[100]);
