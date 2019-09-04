@@ -47,7 +47,7 @@
           </v-card>
         </v-flex>
       </v-layout>
-      <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackcolor" top>
+      <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackcolor" multi-line top>
         {{ text }}
         <v-btn @click="snackbar = false" text>Close</v-btn>
       </v-snackbar>
@@ -65,7 +65,7 @@ export default {
     valid: true,
     snackbar: false,
     text: "Aku rindu.",
-    timeout: 5000,
+    timeout: 6000,
     snackcolor: ""
   }),
   computed: {
@@ -87,6 +87,7 @@ export default {
               this.snackcolor = "success";
               this.text = "Login berhasil.";
               window.localStorage.setItem("token", response.data.success.token);
+              window.localStorage.setItem("nama", response.data.success.nama);
               setTimeout(() => this.$router.push({ path: "/" }), 1000);
               this.$store.dispatch("login", {});
             })
@@ -96,11 +97,6 @@ export default {
               this.snackcolor = "error";
             });
         }
-      });
-    },
-    login() {
-      this.$store.dispatch("login").then(() => {
-        this.$router.push("/");
       });
     }
   }

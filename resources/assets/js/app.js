@@ -10,6 +10,7 @@ import vueHeadful from "vue-headful";
 import routes from "./router.js";
 import App from "./components/App.vue";
 import Layout from "./components/Layout.vue";
+// import VAvatarUploader from "vuetify-avatar-uploader";
 
 Vue.use(Vuex);
 Vue.use(Vuetify);
@@ -20,16 +21,21 @@ Vue.component("app", App);
 Vue.component("layout", Layout);
 Vue.component("video-bg", VideoBg);
 Vue.component("vue-headful", vueHeadful);
+// Vue.component("VAvatarUploader", VAvatarUploader);
 
-Vue.prototype.$appUrl = "http://127.0.0.1:8000";
+Vue.prototype.$appUrl = "http://ifelse.filkom.ub.ac.id";
 
 const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGOUT = "LOGOUT";
+const SOUND = "SOUND";
+const DEFAULT = "DEFAULT";
 
 const store = new Vuex.Store({
   state: {
-    isLoggedIn: !!localStorage.getItem("token")
+    isLoggedIn: !!localStorage.getItem("token"),
+    isSoundON: false,
+    name: localStorage.getItem("nama")
   },
   mutations: {
     [LOGIN](state) {
@@ -41,6 +47,12 @@ const store = new Vuex.Store({
     },
     [LOGOUT](state) {
       state.isLoggedIn = false;
+    },
+    [SOUND](state) {
+      state.isSoundON = !state.isSoundON;
+    },
+    [DEFAULT](state) {
+      state.isSoundON = false;
     }
   },
   actions: {
@@ -55,12 +67,22 @@ const store = new Vuex.Store({
     },
     logout({ commit }) {
       localStorage.removeItem("token");
+      localStorage.removeItem("nama");
       commit(LOGOUT);
+    },
+    sound({ commit }) {
+      commit(SOUND);
+    },
+    default({ commit }) {
+      commit(DEFAULT);
     }
   },
   getters: {
     isLoggedIn: state => {
       return state.isLoggedIn;
+    },
+    isSoundON: state => {
+      return state.isSoundON;
     }
   }
 });

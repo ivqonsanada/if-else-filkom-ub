@@ -8,7 +8,9 @@
           <v-expansion-panels focusable>
             <v-expansion-panel v-for="faq in faqs" :key="faq.ask">
               <v-expansion-panel-header>{{ faq.ask }}</v-expansion-panel-header>
-              <v-expansion-panel-content class="mt-3">{{ faq.answer }}</v-expansion-panel-content>
+              <v-expansion-panel-content class="mt-3">
+                <div v-html="faq.answer"></div>
+              </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
         </v-flex>
@@ -36,6 +38,10 @@ export default {
           ask: "Tema IF ELSE tahun ini apa ya?",
           answer:
             "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti bersama-sama dalam menghadapi segala masalah yang dihadapi maupun menggapai apa yang diinginkan secara bersama sama. Dengan diangkatnya tema ini juga, mahasiswa Teknik Informatika angkatan 2019 dapat memiliki solidaritas yang tinggi pada masing - masing individu dalam menyelesaikan permasalahan yang ada."
+        },
+        {
+          ask: "Bagaimana cara memasang twibbonnya?",
+          answer: `Tutorial twibbon dapat dilihat di youtube IF ELSE FILKOM UB dengan membuka link berikut: <a href="http://ifelse.filkom.ub.ac.id/youtube" target="_blank">ifelse.filkom.ub.ac.id/youtube</a>`
         }
       ]
     };

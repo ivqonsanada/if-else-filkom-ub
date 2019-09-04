@@ -2,38 +2,43 @@
 <template>
   <v-content transition="fade-transition">
     <vue-headful title="Home | IF ELSE"></vue-headful>
-    <!-- ['https://ub.ac.id/wp-content/uploads/2019/02/ub-2018-09.mp4'] -->
     <video-bg :sources="video" img="http://ifelse.filkom.ub.ac.id/public/img/bg2.png">
       <v-container fluid fill-height>
         <v-flex align-center justify-space-between layout text-center column class="white--text">
           <div></div>
 
-          <div>
-            <v-avatar :tile="true" :size="logoSize" class="mb-4">
-              <img src="http://ifelse.filkom.ub.ac.id/public/img/logo-noname.svg" />
-            </v-avatar>
+          <transition name="fade">
+            <div v-show="!isSoundON">
+              <v-avatar :tile="true" :size="logoSize" class="mb-4">
+                <img src="http://ifelse.filkom.ub.ac.id/public/img/logo-noname.svg" />
+              </v-avatar>
 
-            <h1
-              class="mt-3 mb-1"
-              :class="{'display-2': $vuetify.breakpoint. smAndDown, 'display-3': $vuetify.breakpoint. mdAndUp}"
-            >Coming Soon</h1>
-            <h2
-              :class="{'display-1': $vuetify.breakpoint. smAndDown, 'display-2': $vuetify.breakpoint. mdAndUp}"
-            >Rangkaian 1</h2>
-          </div>
+              <h1
+                class="mt-3 mb-1"
+                :class="{'display-2': $vuetify.breakpoint. smAndDown, 'display-3': $vuetify.breakpoint. mdAndUp}"
+              >Coming Soon</h1>
+              <h2
+                :class="{'display-1': $vuetify.breakpoint. smAndDown, 'display-2': $vuetify.breakpoint. mdAndUp}"
+              >Rangkaian 2</h2>
+            </div>
+          </transition>
 
-          <v-btn
-            ref="button"
-            color="light-blue darken-4"
-            fab
-            large
-            dark
-            class="elevation-24"
-            id="my-5"
-            @click="$vuetify.goTo(target, options)"
-          >
-            <v-icon>keyboard_arrow_down</v-icon>
-          </v-btn>
+          <transition name="fade">
+            <div v-show="!isSoundON">
+              <v-btn
+                ref="button"
+                color="light-blue darken-4"
+                fab
+                large
+                dark
+                class="elevation-24"
+                id="my-5"
+                @click="$vuetify.goTo(target, options)"
+              >
+                <v-icon>keyboard_arrow_down</v-icon>
+              </v-btn>
+            </div>
+          </transition>
         </v-flex>
       </v-container>
     </video-bg>
@@ -51,11 +56,11 @@
             md6
             sm12
           >
-            <h1 class="display-2 mt-4 mb-1">IF ELSE</h1>
-            <h2 class="display-1 mb-4">"Berdiri Bersama Informatika"</h2>
-            <h3
+            <h2 class="display-2 mt-4 mb-1">IF ELSE</h2>
+            <h3 class="display-1 mb-4">"Berdiri Bersama Informatika"</h3>
+            <h4
               class="headline pb-4"
-            >IF ELSE merupakan singkatan dari Informatics Education and Learning for Society Enhancement yang merupakan sebuah Program Pembinaan Mahasiswa Baru (Probin Maba) Teknik Informatika pada tahun 2019.</h3>
+            >IF ELSE merupakan singkatan dari Informatics Education and Learning for Society Enhancement yang merupakan sebuah Program Pembinaan Mahasiswa Baru (Probin Maba) Teknik Informatika pada tahun 2019.</h4>
           </v-flex>
         </v-layout>
       </v-container>
@@ -76,9 +81,8 @@
                     :to="`news${post.link}`"
                   >
                     <v-img
-                      :aspect-ratio="16/9"
+                      :aspect-ratio="1"
                       :src="`http://ifelse.filkom.ub.ac.id/public/img/blog/${post.img}`"
-                      class="homenews"
                     >
                       <v-expand-transition>
                         <div
@@ -104,7 +108,6 @@
       </v-layout>
     </v-container>
   </v-content>
-  <!-- https://ub.ac.id/wp-content/uploads/2019/02/ub-2018-09.mp4 -->
 </template>
 
 <script>
@@ -118,7 +121,8 @@ export default {
       offset: 0,
       easing: "easeInOutCubic",
       page: 1,
-      video: ["https://ub.ac.id/wp-content/uploads/2019/02/ub-2018-09.mp4"],
+
+      video: ["http://ifelse.filkom.ub.ac.id/public/video/h-2.mp4"],
       news: {
         data: [
           {
@@ -166,13 +170,22 @@ export default {
         offset: this.offset,
         easing: this.easing
       };
+    },
+    isSoundON() {
+      return this.$store.getters.isSoundON;
     }
   },
   beforeCreate() {
     axios.get(`${this.$appUrl}/nyoba?page=1`).then(response => {
       this.news = response.data;
     });
+    this.$store.dispatch("default");
   }
+  // mounted() {
+  //   let d = new Date();
+  //   let n = d.getDate();
+  //   document.getElementsByTagName("h1")[0].innerHTML = `H-${31 - n}`;
+  // }
 };
 </script>
 
@@ -200,15 +213,5 @@ export default {
 
 .VideoBg__content {
   background: rgba(0, 0, 0, 0.6);
-}
-
-.homenews {
-  height: 264px;
-}
-
-@media (min-width: 800px) {
-  .homenews {
-    height: 450px;
-  }
 }
 </style>

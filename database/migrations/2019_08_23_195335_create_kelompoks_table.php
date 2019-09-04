@@ -15,6 +15,7 @@ class CreateKelompoksTable extends Migration
     {
         Schema::create('kelompoks', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('kelompok');
             $table->timestamps();
         });
     }

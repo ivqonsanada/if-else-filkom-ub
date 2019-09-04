@@ -8,19 +8,31 @@
 
     <v-navigation-drawer fixed v-model="drawer" temporary app width="264">
       <v-flex layout text-center>
-        <v-btn text icon v-on:click="drawer = false" class="ma-1" aria-label="Close Navigation">
+        <v-btn
+          text
+          icon
+          v-on:click="drawer = false"
+          class="pa-3 closeNav"
+          aria-label="Close Navigation"
+        >
           <v-icon>menu</v-icon>
         </v-btn>
-        <v-list-item-avatar :height="avatarSize+4" :width="avatarSize" :tile="true" class="mt-5">
+        <v-list-item-avatar
+          :height="avatarSize+4"
+          :width="avatarSize"
+          :tile="true"
+          class="menu menuLogo"
+        >
           <v-img src="http://ifelse.filkom.ub.ac.id/public/img/logo-noname.svg"></v-img>
         </v-list-item-avatar>
       </v-flex>
       <v-list nav dense>
         <v-divider></v-divider>
-        <!-- <div style="margin: 0 0 4px 0;"></div> -->
+
         <v-list-item-group color="primary">
           <div v-if="isLoggedIn">
-            <v-list-item :to="pages.dashboard">
+            <v-list-item :to="pages.profile">
+              <!-- <v-list-item> -->
               <v-list-item-action>
                 <v-icon>person</v-icon>
               </v-list-item-action>
@@ -31,7 +43,6 @@
             <v-divider></v-divider>
           </div>
 
-          <!-- <div style="margin: 0 0 4px 0;"></div> -->
           <v-list-item :to="pages.login" v-if="!isLoggedIn">
             <v-list-item-action>
               <v-icon>exit_to_app</v-icon>
@@ -60,7 +71,6 @@
           </v-list-item>
 
           <v-divider></v-divider>
-          <!-- <div style="margin: 0 0 4px 0;"></div> -->
           <v-list-item v-for="page in pages.basic" :key="page.name" :to="page.url">
             <v-list-item-action>
               <v-icon>{{ page.icon }}</v-icon>
@@ -80,11 +90,12 @@
         <v-card flat tile class="light-blue darken-4 white--text text-center pt-2">
           <v-card-text class="white--text pb-1">Follow sosial media kami ya!</v-card-text>
 
-          <v-card-text class="pa-0">
+          <v-card-text class="py-4">
             <v-btn
               v-for="sosmed in sosmeds"
               :key="sosmed.icon"
-              class="mx-3 white--text pt-0 mt-0"
+              class="mx-3 white--text"
+              text
               icon
               :href="sosmed.link"
               target="_blank"
@@ -171,7 +182,8 @@ export default {
           }
         },
         login: "/login",
-        home: "/"
+        home: "/",
+        profile: "/profile"
       },
       avatarSize: "100px",
       sosmeds: [
@@ -217,10 +229,11 @@ export default {
     axios
       .post(`${this.$appUrl}/api/details`, bodyParameters, config)
       .then(response => {
-        this.nama = response.data.success.name;
+        this.nama = response.data.success.nama;
       })
       .catch(e => {
         this.$store.dispatch("logout");
+        this.$router.push("/");
       });
   },
   computed: {
@@ -243,5 +256,16 @@ export default {
 
 .v-divider {
   margin-bottom: 4px;
+}
+
+.closeNav {
+  top: 8px;
+  left: 5px;
+  height: 48px !important;
+}
+
+.menuLogo {
+  margin-top: 30px !important;
+  margin-left: 30px !important;
 }
 </style>

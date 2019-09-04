@@ -29,6 +29,14 @@ Route::get('youtube', function () {
   return redirect()->away('https://www.youtube.com/channel/UCaAZt3JB9xgqj7xRosdtsig');
 });
 
+Route::get('kelompok', function () {
+  return redirect()->away('https://drive.google.com/file/d/1iWw9Cic-c6eC6ONpabm1gs6FsDRpceyJ/view?usp=sharing');
+});
+
+Route::get('twibbon', function () {
+  return redirect()->away('https://drive.google.com/drive/folders/1gi0NKHBDo-sa92QYjlYxWdEM6JDj1iJ4?usp=sharing');
+});
+
 Route::get('pendamping-maba', 'PendampingController@index');
 
 Route::get('{any?}', 'PageController@index')->where('any', '.*');

@@ -9,6 +9,7 @@ import Page404 from "./components/error/Page404.vue";
 import News from "./components/pages/News.vue";
 import Nilai from "./components/pages/Nilai.vue";
 import Tugas from "./components/pages/Tugas.vue";
+import Profile from "./components/pages/Profile.vue";
 
 // 2. Define some routes
 // Each route should map to a component. The "component" can
@@ -62,6 +63,15 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: "/profile",
+    component: Profile,
+    name: "Profile",
+    meta: {
+      requiresAuth: true
+    }
+  },
+
   {
     path: "/*",
     component: Page404

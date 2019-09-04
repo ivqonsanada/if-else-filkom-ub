@@ -16,7 +16,7 @@ mix.js("resources/assets/js/app.js", "public/js").extract(["vuetify"]);
 mix.webpackConfig({
   output: {
     // Chunks in webpack
-    publicPath: "/",
+    publicPath: "public/",
     chunkFilename: "js/components/[name].js"
   }
 });

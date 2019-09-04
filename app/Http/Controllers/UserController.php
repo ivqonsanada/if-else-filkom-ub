@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class UserController extends Controller
@@ -21,6 +22,7 @@ class UserController extends Controller
     if (Auth::attempt(['nim' => request('nim'), 'password' => request('password')])) {
       $user = Auth::user();
       $success['token'] =  $user->createToken('IF ELSE')->accessToken;
+      $success['nama'] = $user->name;
       return response()->json(['success' => $success], $this->successStatus);
     } else {
       return response()->json(['error' => 'NIM atau Password tidak cocok.'], 401);
@@ -46,7 +48,6 @@ class UserController extends Controller
     $input['password'] = bcrypt($input['password']);
     $user = User::create($input);
     $success['token'] =  $user->createToken('MyApp')->accessToken;
-    $success['name'] =  $user->name;
     return response()->json(['success' => $success], $this->successStatus);
   }
   /** 
@@ -57,8 +58,42 @@ class UserController extends Controller
   public function details()
   {
     $user = Auth::user();
+    // $profile['nim'] = $user->nim;
+    $profile['nama'] = $user->name;
+    return response()->json(['success' => $profile], $this->successStatus);
+  }
 
+  public function changePassword(Request $request)
+  {
+    $user = Auth::user();
 
-    return response()->json(['success' => $user], $this->successStatus);
+    $validator = Validator::make($request->all(), [
+      'oldPassword' => 'required',
+      'newPassword' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      return response()->json(['error' => $validator->errors()], 401);
+    }
+
+    $newPassword = bcrypt(request('newPassword'));
+    $oldPassword = request('oldPassword');
+
+    $old = request('oldPassword');
+    $new = request('newPassword');
+
+    $checkSame = $old == $new;
+    $checkOldPassword = Hash::check($oldPassword, $user->password);
+
+    if (!$checkOldPassword) {
+      return response()->json(['error' => 'Password lama anda salah.'], 401);
+    }
+    if ($checkSame) {
+      return response()->json(['error' => 'Password lama dan password baru sama.'], 401);
+    }
+
+    $user->password = $newPassword;
+    $user->save();
+    return response()->json(['success' => 'Password berhasil diganti dengan password baru.'], $this->successStatus);
   }
 }
