@@ -1,36 +1,181 @@
 
 <template>
   <v-content>
-    <vue-headful title="Tugas | IF ELSE"></vue-headful>
-    <v-container fluid fill-height>
-      <v-layout justify-center align-center>
-        <v-flex xs12 sm8 md6>
-          <v-expansion-panels multiple v-model="panel">
+    <vue-headful title="Tugas | IF ELSE FILKOM UB" />
+    <v-container
+      fluid
+      fill-height
+    >
+      <v-layout
+        justify-center
+        align-center
+      >
+        <v-flex
+          xs12
+          sm8
+          md6
+        >
+          <v-expansion-panels multiple>
             <v-expansion-panel>
               <v-expansion-panel-header class="flex--primary">
-                <div>{{ faqs[0].ask }}</div>
+                <div>Penugasan 1 - Video</div>
               </v-expansion-panel-header>
               <v-expansion-panel-content class="mt-3">
-                <div v-html="faqs[0].answer"></div>
+                <p>Ketentuan Tugas</p>
+                <p>1. Membuat Video:</p>
+                <ul>
+                  <li>Pembukaan (Semua anggota harus dalam satu frame)</li>
+                  <li>Pengenalan masing-masing anggota</li>
+                  <li>Penjelasan tentang nama kelompok masing-masing</li>
+                  <li>Pandangan tentang TIF</li>
+                  <li>Harapan per-individu setelah kuliah di TIF</li>
+                  <li>Penutupan (semua anggota harus dalam satu frame)</li>
+                </ul>
+                <br>
+                <p>2. Aturan:</p>
+                <ul>
+                  <li>Video diupload ke line minimal 5 menit, tidak ada maksimal</li>
+                  <li>Video diupload oleh semua anggota kelompok</li>
+                  <li>Caption berisi Nama kelompok dan nama anggota kelompoknya.</li>
+                  <li>Captions diakhiri dengan hashtag #BerdiriBersamaInformatika #ExploreWithOurFamily #IFELSE2019 #MariKembali #SatuPaduInformatika</li>
+                </ul>
+                <br>
+                <p>
+                  <strong>Deadline</strong>: 10 September 2019
+                </p>
               </v-expansion-panel-content>
             </v-expansion-panel>
 
             <v-expansion-panel>
               <v-expansion-panel-header class="flex--primary">
-                <div>{{ faqs[1].ask }}</div>
+                <div>Penugasan 2 - Essay</div>
               </v-expansion-panel-header>
               <v-expansion-panel-content class="mt-3">
-                <div>Coming Soon</div>
+                <p>Ketentuan Tugas</p>
+                <p>1. Membuat Essay:</p>
+                <ul>
+                  <li>
+                    Menjelaskan kembali materi-materi yang telah didapat selama mengikuti kegiatan:
+                    <ol style="list-style-type:circle;">
+                      <li>Halo Himpunan</li>
+                      <li>Rangkaian 2</li>
+                    </ol>
+                  </li>
+                </ul>
+                <br>
+                <p>2. Aturan:</p>
+                <ul>
+                  <li>Minimal 500 kata</li>
+                  <li>Kerjakan di word</li>
+                  <li>Essay dibuat sesuai ketentuan PUEBI ( Pedoman Umum Ejaan Bahasa Indonesia )</li>
+                </ul>
+                <br>
+                <p>
+                  <strong>Deadline</strong>: 14 November 2019, 23:59
+                </p>
               </v-expansion-panel-content>
             </v-expansion-panel>
 
             <v-expansion-panel>
               <v-expansion-panel-header class="flex--primary">
-                <div>{{ faqs[2].ask }}</div>
+                <div>Penugasan 3 - Instastory</div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content
+                class="mt-3"
+              >
+                <p>Membuat instastory setiap ada kegiatan di luar rangkaian</p>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+
+            <v-expansion-panel>
+              <v-expansion-panel-header class="flex--primary">
+                <div>Penugasan 4 - Kuis</div>
               </v-expansion-panel-header>
               <v-expansion-panel-content class="mt-3">
-                <div>Coming Soon</div>
+                <div class="mb-5">
+                  Tugas 4.1 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-1"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
+
+                <div class="mb-5">
+                  Tugas 4.2 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-2"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
+
+                <div class="mb-5">
+                  Tugas 4.3 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-3"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
+
+                <div class="mb-5">
+                  Tugas 4.4 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-4"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
+
+                <div class="mb-5">
+                  Tugas 4.5 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-5"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
+
+                <div class="mb-5">
+                  Tugas 4.6 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-6"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
+
+                <div>
+                  Tugas 4.7 :
+                  <v-btn
+                    outlined
+                    color="light-blue darken-4"
+                    to="/tugas/4-7"
+                  >
+                    Has Ended
+                  </v-btn>
+                </div>
               </v-expansion-panel-content>
+            </v-expansion-panel>
+
+            <v-expansion-panel>
+              <v-expansion-panel-header class="flex--primary">
+                <div>Penugasan SWOT</div>
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class="mt-3" />
             </v-expansion-panel>
           </v-expansion-panels>
         </v-flex>
@@ -42,51 +187,7 @@
 <script>
 export default {
   data() {
-    return {
-      // panel: [0, 1, 2, 3],
-      faqs: [
-        {
-          ask: "Penugasan 1",
-          answer: `
-<p>Ketentuan Tugas</p>
-<p>1. Membuat Video:</p>
-<ul>
-<li>Pembukaan (Semua anggota harus dalam satu frame)</li>
-<li>Pengenalan masing-masing anggota</li>
-<li>Penjelasan tentang nama kelompok masing-masing</li>
-<li>Pandangan tentang TIF</li>
-<li>Harapan per-individu setelah kuliah di TIF</li>
-<li>Penutupan (semua anggota harus dalam satu frame)</li>
-</ul>
-<br>
-<p>2. Aturan:</p>
-<ul>
-<li>Video diupload ke line minimal 5 menit, tidak ada maksimal</li>
-<li>Video diupload oleh semua anggota kelompok</li>
-<li>Caption berisi Nama kelompok dan nama anggota kelompoknya.</li>
-<li>Captions diakhiri dengan hashtag #BerdiriBersamaInformatika #ExploreWithOurFamily #IFELSE2019 #MariKembali #SatuPaduInformatika</li>
-</ul>
-<br>
-<p><strong>Deadline</strong>: 10 September 2019</p>
-`
-        },
-        {
-          ask: "Penugasan 2",
-          answer:
-            "Probin Maba TIF 2019 sendiri adalah serangkaian kegiatan pembinaan yang digunakan sebagai sarana mahasiswa Teknik Informatika angkatan 2019 dalam mengembangkan nilai – nilai positif baik dengan cara pendidikan formal maupun informal yang diperoleh dari mahasiswa angkatan terdahulu & dari lingkungan sekitar."
-        },
-        {
-          ask: "Penugasan 3",
-          answer:
-            "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti bersama-sama dalam menghadapi segala masalah yang dihadapi maupun menggapai apa yang diinginkan secara bersama sama. Dengan diangkatnya tema ini juga, mahasiswa Teknik Informatika angkatan 2019 dapat memiliki solidaritas yang tinggi pada masing - masing individu dalam menyelesaikan permasalahan yang ada."
-        },
-        {
-          ask: "Total",
-          answer:
-            "IF ELSE tahun ini mengusung tema 'Berdiri Bersama Informatika' yang berarti bersama-sama dalam menghadapi segala masalah yang dihadapi maupun menggapai apa yang diinginkan secara bersama sama. Dengan diangkatnya tema ini juga, mahasiswa Teknik Informatika angkatan 2019 dapat memiliki solidaritas yang tinggi pada masing - masing individu dalam menyelesaikan permasalahan yang ada."
-        }
-      ]
-    };
+    return {};
   },
   beforeCreate() {
     let config = {
@@ -99,7 +200,7 @@ export default {
       .post(`${this.$appUrl}/api/details`, bodyParameters, config)
       .catch(e => {
         this.$store.dispatch("logout");
-        this.$router.push("/");
+        this.$router.push("/login");
       });
   }
 };

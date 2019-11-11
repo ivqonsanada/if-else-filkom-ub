@@ -1,40 +1,117 @@
 
 <template>
   <v-content>
-    <vue-headful v-bind:title="`Rules | IF ELSE`"></vue-headful>
-    <v-container fluid fill-height md8 sm12>
-      <v-layout justify-center align-center>
-        <!-- <v-flex align-center justify-center layout xs12 class="lebar" column>
+    <vue-headful :title="`Rules | IF ELSE FILKOM UB`" />
+    <v-container
+      fluid
+      fill-height
+      md8
+      sm12
+    >
+      <v-layout
+        justify-center
+        align-center
+      >
+        <!-- <v-flex
+          align-center
+          justify-center
+          layout
+          xs12
+          class="lebar"
+          column
+        >
           <v-card>
-            <v-layout style="margin: 16px 16px 16px;" column>
+            <v-layout
+              style="margin: 16px 16px 16px;"
+              column
+            >
               <v-card-title primary-title>
-                <div v-html="post.content"></div>
+                <div v-html="konten" />
+                <p style="margin-leftt: 10px;margin-top: 20px">
+                  <strong> Keterangan: </strong>
+                </p>
+                <ol>
+                  <li>Peserta merupakan seluruh mahasiswa baru Program Studi Teknik Informatika Fakultas Ilmu Komputer Universitas Brawijaya angkatan 2019.</li>
+                  <li>Foto gesper standar&nbsp;</li>
+                  <div class="row">
+                    <v-card
+                      max-width="250"
+                      max-height="180"
+                      class="px-4 py-4 mb-4 mr-4"
+                    >
+                      <div class="justify-center align-center d-flex flex-column">
+                        <viewer>
+                          <img
+                            class="img-profile v-image v-responsive"
+                            :src="gesper.img1"
+                          >
+                        </viewer>
+                      </div>
+                    </v-card>
+                    <v-card
+                      max-width="250"
+                      max-height="180"
+                      class="px-4 py-4 mb-4 mr-4"
+                    >
+                      <div class="justify-center align-center d-flex flex-column">
+                        <viewer>
+                          <img
+                            class="img-profile v-image v-responsive"
+                            :src="gesper.img2"
+                          >
+                        </viewer>
+                      </div>
+                    </v-card>
+                  </div>
+                  <li>Denah open gate</li>
+                  <v-card
+                    max-width="300"
+                    max-height="360"
+                    class="px-4 py-4 mb-4 mr-4"
+                  >
+                    <div class="justify-center align-center d-flex flex-column">
+                      <viewer>
+                        <img
+                          class="img-profile v-image v-responsive"
+                          :src="denah"
+                        >
+                      </viewer>
+                    </div>
+                  </v-card>
+                </ol>
               </v-card-title>
-              <v-column align="center" justify="center" class="mx-4">
-                <v-img :aspect-ratio="16/9" :src="gesper.img1" alt />
-                <v-img :aspect-ratio="16/9" :src="gesper.img2" alt />
-              </v-column>
-              <p></p>
-              <p></p>
-              <div style="padding-left: 8px;">
-                <p>Denah:</p>
-                <v-row align="center" justify="center" class="mx-1 d-flex flex-wrap">
-                  <v-img :aspect-ratio="1" :src="denah" alt />
-                </v-row>
+              <div class="d-flex justify-center mt-6">
+                <v-btn
+                  class="my-6"
+                  dark
+                  color="light-blue darken-4"
+                  href="http://ifelse.filkom.ub.ac.id/bukusaku"
+                  target="_blank"
+                >
+                  Buku saku IF ELSE FILKOM UB
+                </v-btn>
               </div>
             </v-layout>
           </v-card>
-        </v-flex>-->
+        </v-flex> -->
 
-        <v-flex align-center justify-center layout text-center column>
+        <!-- <v-flex
+          align-center
+          justify-center
+          layout
+          text-center
+          column
+        >
           <v-card>
             <v-card-title primary-title>
               <div>
-                <h3 class="display-3 mb-0">Coming Soon</h3>
+                <h3 class="display-3 mb-0">
+                  Coming Soon
+                </h3>
               </div>
             </v-card-title>
           </v-card>
-        </v-flex>
+        </v-flex> -->
       </v-layout>
     </v-container>
   </v-content>
@@ -42,105 +119,33 @@
        <script>
 export default {
   data() {
-    return {
-      post: {
-        title: "",
-        content: `<h1 style="text-align: center"><strong>TATA TERTIB PESERTA RANGKAIAN 1 IF ELSE 2019</strong></h1>
-<ol type="1">
-    <li>Mematuhi peraturan dan tata tertib IF ELSE 2019.</li>
-    <li>Membawa barang yang sesuai dengan ketentuan.</li>
-    <li>Peserta wajib mengikuti seluruh rangkaian IF-ELSE 2019 secara aktif.</li>
-    <li>Wajib menerapkan 5S+1N terhadap sesama peserta dan panitia.</li>
-    <li>Memakai nametag fakultas.</li>
-    <li>Ketentuan penampilan peserta:</li>
-</ol>
-<ol>
-    <ol type="a">
-        <li>Putra :</li>
-        <ol type="i">
-            <li>Rambut tidak dicat warna dan disisir rapi.</li>
-            <li>Memakai kemeja putih polos lengan panjang (dasi hitam panjang)</li>
-            <li>Memakai celana panjang kain berwarna hitam tidak ketat</li>
-            <li>Menggunakan pita berwarna biru (ukuran lebar 1 cm) di lengan kanan, simpul kupu-kupu</li>
-            <li>Ikat pinggang warna hitam gesper standar</li>
-            <li>Kaos kaki berwarna putih di atas mata kaki</li>
-            <li>Memakai sepatu pantofel berwarna hitam.</li>
-            <li>Pita (diikat di lengan kiri) :</li>
-            <ol>
-                <li>Kuning : Penyakit ringan</li>
-                <li>Hitam : Penyakit berat/kronis</li>
-            </ol>
-        </ol>
-    </ol>
-    <ol type="a" start="2">
-        <li>Putri :</li>
-        <ol type="i">
-            <li>Bagi yang menggunakan kerudung, kerudung segi 4 berwarna hitam, model biasa.</li>
-            <li>Bagi yang tidak menggunakan kerudung, rambut dikuncir satu rapi.</li>
-            <li>Rambut tidak dicat warna dan disisir rapi.</li>
-            <li>Memakai kemeja putih polos lengan panjang (dasi hitam panjang)</li>
-            <li>Memakai rok panjang kain berwarna hitam tidak ketat</li>
-            <li>Menggunakan pita berwarna biru (ukuran lebar 1 cm) di lengan kanan, simpul kupu-kupu</li>
-            <li>Ikat pinggang warna hitam gesper standar</li>
-            <li>Kaos kaki berwarna putih di atas mata kaki</li>
-            <li>Memakai sepatu pantofel berwarna hitam.</li>
-            <li>Pita (diikat di lengan kiri) :</li>
-            <ol>
-                <li>Kuning : Penyakit ringan</li>
-                <li>Hitam : Penyakit berat/kronis</li>
-            </ol>
-        </ol>
-    </ol>
-    </ol>
-</ol>
-<ol start="7">
-    <li>Sudah sarapan terlebih dahulu di tempat tinggal masing masing.</li>
-    <li>Peserta dilarang untuk :</li>
-</ol>
-<ol >
-    <ol type="a">
-        <li>Membawa barang-barang berharga.</li>
-        <li>Menggunakan jam tangan.</li>
-        <li>Membawa senjata tajam, senjata api, rokok, vape, narkotika, dan minuman beralkohol.</li>
-        <li>Membawa dan memakai make up, aksesoris atau perhiasan.</li>
-        <li>Menggunakan HP saat kegiatan sedang berlangsung (kecuali ada instruksi dari panitia).</li>
-        <li>Berbuat keonaran.</li>
-        <li>Membawa kendaraan bermotor ke dalam wilayah Universitas Brawijaya.</li>
-        <li>Meninggalkan kegiatan yang sedang berlangsung tanpa seizin panitia.</li>
-    </ol>
-</ol>
-<ol start="9">
-    <li>Wajib membawa :</li>
-</ol>
-<ol>
-    <ol type="a">
-        <li>Tas ransel berwarna hitam</li>
-        <li>Buku dan alat tulis</li>
-        <li>1 roti sobek dan susu 250 ml</li>
-        <li>Air mineral 600 ml</li>
-        <li>Jas hujan</li>
-        <li>Obat &ndash; obatan pribadi</li>
-    </ol>
-</ol>
-<ol start="10">
-    <li>Barang bawaan pribadi menjadi tanggung jawab masing-masing (panitia tidak bertanggung jawab atas kehilangan barang pribadi).</li>
-    <li>Peserta yang berhalangan hadir, wajib menyerahkan keterangan disertai bukti maksimal H+3 setelah rangkaian.</li>
-</ol>
-<br>
-<p>Keterangan:</p>
-<ol>
-    <li>Peserta merupakan seluruh mahasiswa baru Program Studi Teknik Informatika Fakultas Ilmu Komputer Universitas Brawijaya angkatan 2019.</li>
-    <li>Foto gesper standar</li>
-</ol>`
-      },
+    return {      
+      konten: "",
       appUrl: this.$appUrl,
       gesper: {
         img1: "http://ifelse.filkom.ub.ac.id/public/img/rules/gesper1.jpg",
         img2: "http://ifelse.filkom.ub.ac.id/public/img/rules/gesper2.jpg"
       },
-      denah: "http://ifelse.filkom.ub.ac.id/public/img/rules/denah-masuk.png"
+      denah: "http://ifelse.filkom.ub.ac.id/public/img/rules/denah.png"
     };
+  },
+  beforeCreate() {
+    let config = {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      };
+      let bodyParameters = {};
+      axios
+        .get(`${this.$appUrl}/api/rules`, bodyParameters, config)
+        .then(response => {
+          this.konten = response.data.konten;
+        })
+        .catch(e => {
+          console.log(e)
+        });
   }
+
 };
 </script>
 

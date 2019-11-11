@@ -1,15 +1,28 @@
 
 <template>
   <v-content>
-    <vue-headful title="FAQ | IF ELSE"></vue-headful>
-    <v-container fluid fill-height>
-      <v-layout justify-center align-center>
-        <v-flex xs12 sm8 md6>
+    <vue-headful title="FAQ | IF ELSE FILKOM UB" />
+    <v-container
+      fluid
+      fill-height
+    >
+      <v-layout
+        justify-center
+        align-center
+      >
+        <v-flex
+          xs12
+          sm8
+          md6
+        >
           <v-expansion-panels focusable>
-            <v-expansion-panel v-for="faq in faqs" :key="faq.ask">
+            <v-expansion-panel
+              v-for="faq in faqs"
+              :key="faq.ask"
+            >
               <v-expansion-panel-header>{{ faq.ask }}</v-expansion-panel-header>
               <v-expansion-panel-content class="mt-3">
-                <div v-html="faq.answer"></div>
+                <div v-html="faq.answer" />
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>

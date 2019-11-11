@@ -1,8 +1,11 @@
 
 <template>
   <v-content>
-    <vue-headful title="Documentation | IF ELSE"></vue-headful>
-    <v-container fluid fill-height>
+    <vue-headful title="Documentation | IF ELSE FILKOM UB" />
+    <v-container
+      fluid
+      fill-height
+    >
       <v-layout column>
         <!-- <v-flex xs12 sm8 md4 mb-4>
           <v-hover>
@@ -61,11 +64,19 @@
           </v-hover>
         </v-flex>-->
 
-        <v-flex align-center justify-center layout text-center column>
+        <v-flex
+          align-center
+          justify-center
+          layout
+          text-center
+          column
+        >
           <v-card>
             <v-card-title primary-title>
               <div>
-                <h3 class="display-3 mb-0">Coming Soon</h3>
+                <h3 class="display-3 mb-0">
+                  Coming Soon
+                </h3>
               </div>
             </v-card-title>
           </v-card>

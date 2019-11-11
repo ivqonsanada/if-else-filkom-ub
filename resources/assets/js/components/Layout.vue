@@ -1,19 +1,33 @@
 <template>
   <v-app>
-    <v-app-bar app clipped-right color="light-blue darken-4" dark>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar
+      app
+      clipped-right
+      color="light-blue darken-4"
+      dark
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>{{ this.$route.name }}</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer />
     </v-app-bar>
 
-    <v-navigation-drawer fixed v-model="drawer" temporary app width="264">
-      <v-flex layout text-center>
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      temporary
+      app
+      width="264"
+    >
+      <v-flex
+        layout
+        text-center
+      >
         <v-btn
           text
           icon
-          v-on:click="drawer = false"
           class="pa-3 closeNav"
           aria-label="Close Navigation"
+          @click="drawer = false"
         >
           <v-icon>menu</v-icon>
         </v-btn>
@@ -23,11 +37,14 @@
           :tile="true"
           class="menu menuLogo"
         >
-          <v-img src="http://ifelse.filkom.ub.ac.id/public/img/logo-noname.svg"></v-img>
+          <v-img src="http://ifelse.filkom.ub.ac.id/public/img/logo-noname.svg" />
         </v-list-item-avatar>
       </v-flex>
-      <v-list nav dense>
-        <v-divider></v-divider>
+      <v-list
+        nav
+        dense
+      >
+        <v-divider />
 
         <v-list-item-group color="primary">
           <div v-if="isLoggedIn">
@@ -40,10 +57,13 @@
                 <v-list-item-title>{{ nama }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-            <v-divider></v-divider>
+            <v-divider />
           </div>
 
-          <v-list-item :to="pages.login" v-if="!isLoggedIn">
+          <v-list-item
+            v-if="!isLoggedIn"
+            :to="pages.login"
+          >
             <v-list-item-action>
               <v-icon>exit_to_app</v-icon>
             </v-list-item-action>
@@ -52,43 +72,68 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-for="page in pages.auth" :key="page.name" :to="page.url" v-if="isLoggedIn">
-            <v-list-item-action>
-              <v-icon>{{ page.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ page.name }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <template v-if="isLoggedIn">
+            <v-list-item
+              v-for="page in pages.auth"
+              :key="page.name"
+              :to="page.url"
+            >
+              <v-list-item-action>
+                <v-icon>{{ page.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>{{ page.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
 
-          <v-list-item v-if="isLoggedIn" @click.stop="dialog = true">
-            <v-list-item-action>
-              <v-icon>exit_to_app</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>Logout</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+            <v-list-item
+              v-if="isLoggedIn"
+              @click.stop="dialog = true"
+            >
+              <v-list-item-action>
+                <v-icon>exit_to_app</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>Logout</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
 
-          <v-divider></v-divider>
-          <v-list-item v-for="page in pages.basic" :key="page.name" :to="page.url">
-            <v-list-item-action>
-              <v-icon>{{ page.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ page.name }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+            <v-divider />
+
+            
+            <v-list-item
+              v-for="page in pages.basic"
+              :key="page.name"
+              :to="page.url"
+            >
+              <v-list-item-action>
+                <v-icon>{{ page.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title>{{ page.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </template>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
 
-    <slot></slot>
+    <slot />
 
-    <v-footer dark height="auto" padless>
+    <v-footer
+      dark
+      height="auto"
+      padless
+    >
       <v-flex xs12>
-        <v-card flat tile class="light-blue darken-4 white--text text-center pt-2">
-          <v-card-text class="white--text pb-1">Follow sosial media kami ya!</v-card-text>
+        <v-card
+          flat
+          tile
+          class="light-blue darken-4 white--text text-center pt-2"
+        >
+          <v-card-text class="white--text pb-1">
+            Follow sosial media kami ya!
+          </v-card-text>
 
           <v-card-text class="py-4">
             <v-btn
@@ -101,41 +146,77 @@
               target="_blank"
               :aria-label="sosmed.name"
             >
-              <v-icon size="24px">{{ sosmed.icon }}</v-icon>
+              <v-icon size="24px">
+                {{ sosmed.icon }}
+              </v-icon>
             </v-btn>
           </v-card-text>
 
-          <v-divider></v-divider>
+          <v-divider />
 
           <v-card-text class="white--text">
             Part of
             <strong>
-              <a href="http://hmif.filkom.ub.ac.id/" target="_blank" class="cleanURL">HMIF FILKOM UB</a>
+              <a
+                href="http://hmif.filkom.ub.ac.id/"
+                target="_blank"
+                class="cleanURL"
+              >HMIF FILKOM UB</a>
             </strong>
           </v-card-text>
         </v-card>
       </v-flex>
     </v-footer>
-    <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackcolor" top>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeout"
+      :color="snackcolor"
+      top
+    >
       {{ text }}
-      <v-btn @click="snackbar = false" text>Close</v-btn>
+      <v-btn
+        text
+        @click="snackbar = false"
+      >
+        Close
+      </v-btn>
     </v-snackbar>
-    <v-dialog v-model="dialog" max-width="290">
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
       <v-card>
-        <v-card-title class="headline">Apakah anda ingin Logout?</v-card-title>
+        <v-card-title class="headline">
+          Apakah anda ingin Logout?
+        </v-card-title>
 
         <v-card-actions>
-          <v-spacer></v-spacer>
+          <v-spacer />
 
-          <v-btn color="green darken-1" text @click="logout">Ya, Logout</v-btn>
+          <v-btn
+            color="red lighten-1"
+            dark 
+            @click="logout"
+          >
+            Ya, Logout
+          </v-btn>
 
-          <v-btn color="green darken-1" text @click="dialog = false">Tidak</v-btn>
+          <v-btn
+            color="red lighten-1"
+            text
+            @click="dialog = false"
+          >
+            Tidak
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
   </v-app>
 </template>
 <script>
+import { loadProgressBar } from "axios-progress-bar";
+loadProgressBar();
+
 export default {
   data() {
     return {
@@ -205,18 +286,9 @@ export default {
       ]
     };
   },
-  methods: {
-    closeMenu() {
-      this.drawer = false;
-    },
-    logout() {
-      this.drawer = false;
-      this.dialog = false;
-      this.$store.dispatch("logout");
-      this.$router.push("/");
-      this.snackbar = true;
-      this.text = "Berhasil Logout.";
-      this.snackcolor = "success";
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn;
     }
   },
   beforeCreate() {
@@ -233,12 +305,21 @@ export default {
       })
       .catch(e => {
         this.$store.dispatch("logout");
-        this.$router.push("/");
       });
   },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
+  methods: {
+    closeMenu() {
+      this.drawer = false;
+    },
+    logout() {
+      this.drawer = false;
+      this.dialog = false;
+      this.nama = "Profile";
+      this.$store.dispatch("logout");
+      this.$router.push("/");
+      this.snackbar = true;
+      this.text = "Berhasil Logout.";
+      this.snackcolor = "success";
     }
   }
 };
@@ -267,5 +348,88 @@ export default {
 .menuLogo {
   margin-top: 30px !important;
   margin-left: 30px !important;
+}
+
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #2196F3;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px #2196F3, 0 0 5px #2196F3;
+  opacity: 1;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 18px;
+  height: 18px;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #2196F3;
+  border-left-color: #2196F3;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 </style>

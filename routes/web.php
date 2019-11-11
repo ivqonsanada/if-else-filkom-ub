@@ -22,6 +22,12 @@
 // Route::get('/rules', 'PageController@rules');
 
 
+// Route::get('/', function() {
+//   return response()->json([
+//    'stuff' => phpinfo()
+//   ]);
+// });
+
 Route::get('nyoba', 'PostController@index');
 Route::get('nyoba/{id?}', 'PostController@post');
 
@@ -35,6 +41,15 @@ Route::get('kelompok', function () {
 
 Route::get('twibbon', function () {
   return redirect()->away('https://drive.google.com/drive/folders/1gi0NKHBDo-sa92QYjlYxWdEM6JDj1iJ4?usp=sharing');
+});
+
+Route::get('perizinan', function () {
+  return redirect()->away('https://drive.google.com/file/d/1MjPH4eKETekADIOHjthPHqfXVE6qCzQh/view?usp=sharing');
+});
+
+
+Route::get('bukusaku', function () {
+  return redirect()->away('https://drive.google.com/drive/folders/1E56g1pESyaU5yhd_WbEqyhaP0EJ5lGFZ?usp=sharing');
 });
 
 Route::get('pendamping-maba', 'PendampingController@index');

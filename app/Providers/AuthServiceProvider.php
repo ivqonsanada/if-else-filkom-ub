@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
         Passport::routes();
-        $lifetime = new \DateInterval('PT1H'); // For 24hours
+        $lifetime = new \DateInterval('PT24H');
         $this->app->get(AuthorizationServer::class)->enableGrantType(new PersonalAccessGrant(), $lifetime);
     }
 }

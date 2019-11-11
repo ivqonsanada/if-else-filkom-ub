@@ -1,55 +1,87 @@
 <template>
   <v-content>
-    <vue-headful title="Login | IF ELSE"></vue-headful>
-    <v-container fluid fill-height>
-      <v-layout justify-center align-center>
-        <v-flex xs12 sm8 md4>
+    <vue-headful title="Login | IF ELSE FILKOM UB" />
+    <v-container
+      fluid
+      fill-height
+    >
+      <v-layout
+        justify-center
+        align-center
+      >
+        <v-flex
+          xs12
+          sm8
+          md4
+        >
           <v-card>
             <v-card-text>
-              <form id="login_form" aria-label="Login">
-                <input type="hidden" name="_token" :value="csrf_token" />
+              <form
+                id="login_form"
+                aria-label="Login"
+              >
+                <input
+                  type="hidden"
+                  name="_token"
+                  :value="csrf_token"
+                >
                 <v-text-field
-                  prepend-icon="person"
                   v-model="nim"
                   v-validate="'required|digits:15'"
+                  prepend-icon="person"
                   data-vv-name="nim"
                   data-vv-as="NIM"
                   :counter="15"
                   :error-messages="errors.collect('nim')"
                   label="NIM"
                   name="nim"
-                ></v-text-field>
+                  autofocus
+                />
 
                 <v-text-field
-                  prepend-icon="lock"
                   v-model="password"
                   v-validate="'required'"
+                  prepend-icon="lock"
                   data-vv-name="password"
                   data-vv-as="Password"
                   :append-icon="show ? 'visibility' : 'visibility_off'"
                   :type="show ? 'text' : 'password'"
-                  @click:append="show = !show"
                   :error-messages="errors.collect('password')"
                   label="Password"
                   name="password"
-                ></v-text-field>
+                  @click:append="show = !show"
+                  @keyup.enter="validate"
+                />
               </form>
             </v-card-text>
             <v-card-actions>
-              <v-spacer></v-spacer>
+              <v-spacer />
               <v-btn
                 :disabled="!valid"
                 color="light-blue darken-4"
                 class="white--text"
                 @click="validate"
-              >Login</v-btn>
+              >
+                Login
+              </v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
       </v-layout>
-      <v-snackbar v-model="snackbar" :timeout="timeout" :color="snackcolor" multi-line top>
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="timeout"
+        :color="snackcolor"
+        multi-line
+        top
+      >
         {{ text }}
-        <v-btn @click="snackbar = false" text>Close</v-btn>
+        <v-btn
+          text
+          @click="snackbar = false"
+        >
+          Close
+        </v-btn>
       </v-snackbar>
     </v-container>
   </v-content>

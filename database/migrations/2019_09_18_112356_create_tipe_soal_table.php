@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRangkaianKecilsTable extends Migration
+class CreateTipeSoalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateRangkaianKecilsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rangkaian_kecils', function (Blueprint $table) {
+        Schema::create('tipe_soal', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kegiatan');
-            $table->integer('rangkaian_id');
-            $table->timestamps();
+            $table->string('nama_tipe');
+            $table->integer('soal_id');
         });
     }
 
@@ -28,6 +27,6 @@ class CreateRangkaianKecilsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rangkaian_kecils');
+        Schema::dropIfExists('tipe_soal');
     }
 }

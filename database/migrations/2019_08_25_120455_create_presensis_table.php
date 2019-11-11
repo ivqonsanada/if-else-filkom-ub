@@ -16,7 +16,7 @@ class CreatePresensisTable extends Migration
         Schema::create('presensis', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("user_id")->unsigned();
-            $table->boolean("book_id")->unsigned();
+            $table->boolean("book_id");
         });
     }
 

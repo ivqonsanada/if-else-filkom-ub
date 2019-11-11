@@ -87,14 +87,25 @@
   </v-content>-->
 
   <v-content>
-    <vue-headful title="Nilai | IF ELSE"></vue-headful>
-    <v-container fluid fill-height>
+    <vue-headful title="Nilai | IF ELSE" />
+    <v-container
+      fluid
+      fill-height
+    >
       <v-layout column>
-        <v-flex align-center justify-center layout text-center column>
+        <v-flex
+          align-center
+          justify-center
+          layout
+          text-center
+          column
+        >
           <v-card>
             <v-card-title primary-title>
               <div>
-                <h3 class="display-3 mb-0">Coming Soon</h3>
+                <h3 class="display-3 mb-0">
+                  Coming Soon
+                </h3>
               </div>
             </v-card-title>
           </v-card>
@@ -119,7 +130,7 @@ export default {
       .post(`${this.$appUrl}/api/details`, bodyParameters, config)
       .catch(e => {
         this.$store.dispatch("logout");
-        this.$router.push("/");
+        this.$router.push("/login");
       });
   }
 };

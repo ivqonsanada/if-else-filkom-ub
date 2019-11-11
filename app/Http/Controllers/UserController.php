@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\AnggotaKelompok;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -95,5 +97,45 @@ class UserController extends Controller
     $user->password = $newPassword;
     $user->save();
     return response()->json(['success' => 'Password berhasil diganti dengan password baru.'], $this->successStatus);
+  }
+
+  public function profile()
+  {
+    $user = Auth::user();
+
+    $profile = AnggotaKelompok::whereNim($user->nim)
+      ->join("kelompoks as k", "k.id", "=", "anggota_kelompoks.kelompok_id")->select('nim', 'kelompok')->firstOrFail();
+
+    $profile['nama'] = $user->name;
+    $profile['avatar'] = $user->avatar;
+
+    return response()->json(['success' => $profile], $this->successStatus);
+  }
+
+  public function update_avatar(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
+    ]);
+    if ($validator->fails()) {
+      return response()->json(['error' => $validator->errors()], 401);
+    }
+
+    $avatarName = 'avatar_' . rand() . '.' . request()->avatar->getClientOriginalExtension();
+
+    $user = Auth::user();
+
+    $avatar_name = $user->avatar;
+    Storage::delete('avatars/' . $avatar_name);
+
+    $request->avatar->storeAs('avatars', $avatarName);
+
+    $user->avatar = $avatarName;
+    $user->save();
+
+    $profile['avatar'] = $user->avatar;
+    $profile['msg'] = 'Update foto profil berhasil.';
+
+    return response()->json(['success' => $profile], $this->successStatus);
   }
 }

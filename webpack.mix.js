@@ -1,4 +1,4 @@
-let mix = require("laravel-mix");
+let mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,12 +11,12 @@ let mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/assets/js/app.js", "public/js").extract(["vuetify"]);
+mix.js('resources/assets/js/app.js', 'public/js').extract(['vuetify'])
 
 mix.webpackConfig({
   output: {
     // Chunks in webpack
-    publicPath: "public/",
-    chunkFilename: "js/components/[name].js"
-  }
-});
+    publicPath: 'public/',
+    chunkFilename: 'js/components/[name].js',
+  },
+})

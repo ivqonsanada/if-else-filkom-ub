@@ -15,7 +15,7 @@ class CreateRangkaiansTable extends Migration
     {
         Schema::create('rangkaians', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("nama_rangkaian")->unsigned();
+            $table->string("nama_rangkaian");
             $table->timestamps();
         });
     }

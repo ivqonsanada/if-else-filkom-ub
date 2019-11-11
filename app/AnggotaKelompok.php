@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnggotaKelompok extends Model
 {
-    public function anggota_kelompoks()
+    public function kelompoks()
     {
         return $this->hasOne("App\Kelompok");
     }
